@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Trivy Vulnerability Report</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        background: #f3f7fb;
+        margin: 0;
+        padding: 28px;
+      }
+      .wrap {
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+      h1 {
+        margin-bottom: 14px;
+      }
+      .summary {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+      }
+      .badge {
+        background: #eef2ff;
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-weight: 600;
+      }
+      .badge-high {
+        background: #fee2e2;
+      }
+      .badge-med {
+        background: #fff4e6;
+      }
+      .badge-low {
+        background: #e0f2ff;
+      }
+      .badge-secret {
+        background: #fef9c3;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 16px 40px rgba(2, 6, 23, 0.08);
+      }
+      thead th {
+        background: #0f172a;
+        color: #fff;
+        padding: 12px 14px;
+        text-align: left;
+        font-size: 13px;
+      }
+      tbody td {
+        padding: 12px 14px;
+        border-bottom: 1px solid #eef2f6;
+        vertical-align: top;
+        font-size: 13px;
+      }
+      .pill {
+        display: inline-block;
+        padding: 5px 12px;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 12px;
+      }
+      .sev-high {
+        background: #fff5f5;
+      }
+      .sev-medium {
+        background: #fffaf0;
+      }
+      .sev-low {
+        background: #f0f9ff;
+      }
+      .sev-secret {
+        background: #fff7cc;
+      }
+
+      .pill.sev-high {
+        background: #f8d7da;
+        color: #7f1d1d;
+      }
+      .pill.sev-medium {
+        background: #fde68a;
+        color: #92400e;
+      }
+      .pill.sev-low {
+        background: #dbeafe;
+        color: #1e3a8a;
+      }
+      .pill.sev-secret {
+        background: #fde68a;
+        color: #713f12;
+      }
+
+      a {
+        color: #0a66c2;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Trivy Vulnerability Report</h1>
+      <div class="summary">
+        <span class="badge">Total: 59</span>
+        <span class="badge badge-high">Critical/High: 58</span>
+        <span class="badge badge-med">Medium: 0</span>
+        <span class="badge badge-low">Low: 0</span>
+        <span class="badge badge-secret">Secrets: 1</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 40px">#</th>
+            <th style="width: 120px">Severity</th>
+            <th style="width: 240px">Target</th>
+            <th>Title / Message</th>
+            <th style="width: 160px">Package / Rule</th>
+            <th style="width: 120px">Fixed in</th>
+            <th style="width: 150px">Vuln / Rule ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="sev-high">
+            <td>1</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>oci_test_dacn_layout (alpine 3.15.4)</td>
+            <td>openssl: double free after calling PEM_read_bio_ex</td>
+            <td>libcrypto1.1</td>
+            <td>1.1.1t-r0</td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2023:2165"
+                target="_blank"
+                >CVE-2022-4450</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>2</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>oci_test_dacn_layout (alpine 3.15.4)</td>
+            <td>openssl: use-after-free following BIO_new_NDEF</td>
+            <td>libcrypto1.1</td>
+            <td>1.1.1t-r0</td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2023:2165"
+                target="_blank"
+                >CVE-2023-0215</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>3</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>oci_test_dacn_layout (alpine 3.15.4)</td>
+            <td>openssl: X.400 address type confusion in X.509 GeneralName</td>
+            <td>libcrypto1.1</td>
+            <td>1.1.1t-r0</td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2025:7937"
+                target="_blank"
+                >CVE-2023-0286</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>4</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>oci_test_dacn_layout (alpine 3.15.4)</td>
+            <td>
+              openssl: Denial of service by excessive resource usage in
+              verifying X509 policy constraints
+            </td>
+            <td>libcrypto1.1</td>
+            <td>1.1.1t-r2</td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2023:3722"
+                target="_blank"
+                >CVE-2023-0464</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>5</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>oci_test_dacn_layout (alpine 3.15.4)</td>
+            <td>openssl: double free after calling PEM_read_bio_ex</td>
+            <td>libssl1.1</td>
+            <td>1.1.1t-r0</td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2023:2165"
+                target="_blank"
+                >CVE-2022-4450</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>6</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>oci_test_dacn_layout (alpine 3.15.4)</td>
+            <td>openssl: use-after-free following BIO_new_NDEF</td>
+            <td>libssl1.1</td>
+            <td>1.1.1t-r0</td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2023:2165"
+                target="_blank"
+                >CVE-2023-0215</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>7</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>oci_test_dacn_layout (alpine 3.15.4)</td>
+            <td>openssl: X.400 address type confusion in X.509 GeneralName</td>
+            <td>libssl1.1</td>
+            <td>1.1.1t-r0</td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2025:7937"
+                target="_blank"
+                >CVE-2023-0286</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>8</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>oci_test_dacn_layout (alpine 3.15.4)</td>
+            <td>
+              openssl: Denial of service by excessive resource usage in
+              verifying X509 policy constraints
+            </td>
+            <td>libssl1.1</td>
+            <td>1.1.1t-r2</td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2023:3722"
+                target="_blank"
+                >CVE-2023-0464</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>9</td>
+            <td><span class="pill sev-high">Critical</span></td>
+            <td>oci_test_dacn_layout (alpine 3.15.4)</td>
+            <td>
+              zlib: heap-based buffer over-read and overflow in inflate() in
+              inflate.c via a large gzip header extra field
+            </td>
+            <td>zlib</td>
+            <td>1.2.12-r2</td>
+            <td>
+              <a
+                href="http://seclists.org/fulldisclosure/2022/Oct/37"
+                target="_blank"
+                >CVE-2022-37434</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>10</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>
+              nodejs-ansi-regex: Regular expression denial of service (ReDoS)
+              matching ANSI escape codes
+            </td>
+            <td>ansi-regex</td>
+            <td>6.0.1, 5.0.1, 4.1.1, 3.0.1</td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2022:6595"
+                target="_blank"
+                >CVE-2021-3807</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>11</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>
+              nodejs-ansi-regex: Regular expression denial of service (ReDoS)
+              matching ANSI escape codes
+            </td>
+            <td>ansi-regex</td>
+            <td>6.0.1, 5.0.1, 4.1.1, 3.0.1</td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2022:6595"
+                target="_blank"
+                >CVE-2021-3807</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>12</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>
+              nodejs-ansi-regex: Regular expression denial of service (ReDoS)
+              matching ANSI escape codes
+            </td>
+            <td>ansi-regex</td>
+            <td>6.0.1, 5.0.1, 4.1.1, 3.0.1</td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2022:6595"
+                target="_blank"
+                >CVE-2021-3807</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>13</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>
+              nodejs-ansi-regex: Regular expression denial of service (ReDoS)
+              matching ANSI escape codes
+            </td>
+            <td>ansi-regex</td>
+            <td>6.0.1, 5.0.1, 4.1.1, 3.0.1</td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2022:6595"
+                target="_blank"
+                >CVE-2021-3807</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>14</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>body-parser: Denial of Service Vulnerability in body-parser</td>
+            <td>body-parser</td>
+            <td>1.20.3</td>
+            <td>
+              <a
+                href="https://access.redhat.com/security/cve/CVE-2024-45590"
+                target="_blank"
+                >CVE-2024-45590</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>15</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>
+              braces: fails to limit the number of characters it can handle
+            </td>
+            <td>braces</td>
+            <td>3.0.3</td>
+            <td>
+              <a
+                href="https://access.redhat.com/security/cve/CVE-2024-4068"
+                target="_blank"
+                >CVE-2024-4068</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>16</td>
+            <td><span class="pill sev-high">Critical</span></td>
+            <td>Node.js</td>
+            <td>
+              bson: Deserialization of Untrusted Data could result in Code
+              injection or Excessive CPU load
+            </td>
+            <td>bson</td>
+            <td>1.1.4</td>
+            <td>
+              <a
+                href="https://access.redhat.com/security/cve/CVE-2020-7610"
+                target="_blank"
+                >CVE-2020-7610</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>17</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>cross-spawn: regular expression denial of service</td>
+            <td>cross-spawn</td>
+            <td>7.0.5, 6.0.6</td>
+            <td>
+              <a
+                href="https://access.redhat.com/security/cve/CVE-2024-21538"
+                target="_blank"
+                >CVE-2024-21538</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>18</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>
+              A vulnerability classified as problematic has been found in
+              debug-js d ...
+            </td>
+            <td>debug</td>
+            <td>3.1.0, 2.6.9</td>
+            <td>
+              <a href="https://github.com/debug-js/debug" target="_blank"
+                >CVE-2017-20165</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>19</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>
+              decode-uri-component: improper input validation resulting in DoS
+            </td>
+            <td>decode-uri-component</td>
+            <td>0.2.1</td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2023:6316"
+                target="_blank"
+                >CVE-2022-38900</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>20</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>
+              decode-uri-component: improper input validation resulting in DoS
+            </td>
+            <td>decode-uri-component</td>
+            <td>0.2.1</td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2023:6316"
+                target="_blank"
+                >CVE-2022-38900</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>21</td>
+            <td><span class="pill sev-high">Critical</span></td>
+            <td>Node.js</td>
+            <td>form-data: Unsafe random function in form-data</td>
+            <td>form-data</td>
+            <td>2.5.4, 3.0.4, 4.0.4</td>
+            <td>
+              <a
+                href="https://access.redhat.com/security/cve/CVE-2025-7783"
+                target="_blank"
+                >CVE-2025-7783</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>22</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>
+              http-cache-semantics: Regular Expression Denial of Service (ReDoS)
+              vulnerability
+            </td>
+            <td>http-cache-semantics</td>
+            <td>4.1.1</td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2023:2655"
+                target="_blank"
+                >CVE-2022-25881</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>23</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>
+              inflect vulnerable to Inefficient Regular Expression Complexity
+            </td>
+            <td>i</td>
+            <td>0.3.7</td>
+            <td>
+              <a href="https://github.com/pksunkara/inflect" target="_blank"
+                >CVE-2021-3820</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>24</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>nodejs-ini: Prototype pollution via malicious INI file</td>
+            <td>ini</td>
+            <td>1.3.6</td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2022:6595"
+                target="_blank"
+                >CVE-2020-7788</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>25</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>node-ip: Incomplete fix for CVE-2023-42282</td>
+            <td>ip</td>
+            <td>&mdash;</td>
+            <td>
+              <a
+                href="https://access.redhat.com/security/cve/CVE-2024-29415"
+                target="_blank"
+                >CVE-2024-29415</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>26</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>
+              nodejs-kind-of: ctorName in index.js allows external user input to
+              overwrite certain internal attributes
+            </td>
+            <td>kind-of</td>
+            <td>6.0.3</td>
+            <td>
+              <a
+                href="https://access.redhat.com/security/cve/CVE-2019-20149"
+                target="_blank"
+                >CVE-2019-20149</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>27</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>
+              nodejs-kind-of: ctorName in index.js allows external user input to
+              overwrite certain internal attributes
+            </td>
+            <td>kind-of</td>
+            <td>6.0.3</td>
+            <td>
+              <a
+                href="https://access.redhat.com/security/cve/CVE-2019-20149"
+                target="_blank"
+                >CVE-2019-20149</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>28</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>
+              nodejs-kind-of: ctorName in index.js allows external user input to
+              overwrite certain internal attributes
+            </td>
+            <td>kind-of</td>
+            <td>6.0.3</td>
+            <td>
+              <a
+                href="https://access.redhat.com/security/cve/CVE-2019-20149"
+                target="_blank"
+                >CVE-2019-20149</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>29</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>
+              nodejs-kind-of: ctorName in index.js allows external user input to
+              overwrite certain internal attributes
+            </td>
+            <td>kind-of</td>
+            <td>6.0.3</td>
+            <td>
+              <a
+                href="https://access.redhat.com/security/cve/CVE-2019-20149"
+                target="_blank"
+                >CVE-2019-20149</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>30</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>
+              nodejs-kind-of: ctorName in index.js allows external user input to
+              overwrite certain internal attributes
+            </td>
+            <td>kind-of</td>
+            <td>6.0.3</td>
+            <td>
+              <a
+                href="https://access.redhat.com/security/cve/CVE-2019-20149"
+                target="_blank"
+                >CVE-2019-20149</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>31</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>
+              nodejs-kind-of: ctorName in index.js allows external user input to
+              overwrite certain internal attributes
+            </td>
+            <td>kind-of</td>
+            <td>6.0.3</td>
+            <td>
+              <a
+                href="https://access.redhat.com/security/cve/CVE-2019-20149"
+                target="_blank"
+                >CVE-2019-20149</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>32</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>
+              The marked module is vulnerable to a regular expression denial of
+              serv ...
+            </td>
+            <td>marked</td>
+            <td>0.3.9</td>
+            <td>
+              <a
+                href="https://github.com/advisories/GHSA-x5pg-88wf-qq4p"
+                target="_blank"
+                >CVE-2017-16114</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>33</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>
+              marked: regular expression block.def may lead Denial of Service
+            </td>
+            <td>marked</td>
+            <td>4.0.10</td>
+            <td>
+              <a
+                href="https://access.redhat.com/security/cve/CVE-2022-21680"
+                target="_blank"
+                >CVE-2022-21680</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>34</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>
+              marked: regular expression inline.reflinkSearch may lead Denial of
+              Service
+            </td>
+            <td>marked</td>
+            <td>4.0.10</td>
+            <td>
+              <a
+                href="https://access.redhat.com/security/cve/CVE-2022-21681"
+                target="_blank"
+                >CVE-2022-21681</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>35</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>nodejs-minimatch: ReDoS via the braceExpand function</td>
+            <td>minimatch</td>
+            <td>3.0.5</td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2023:0321"
+                target="_blank"
+                >CVE-2022-3517</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>36</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>nodejs-minimatch: ReDoS via the braceExpand function</td>
+            <td>minimatch</td>
+            <td>3.0.5</td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2023:0321"
+                target="_blank"
+                >CVE-2022-3517</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>37</td>
+            <td><span class="pill sev-high">Critical</span></td>
+            <td>Node.js</td>
+            <td>minimist: prototype pollution</td>
+            <td>minimist</td>
+            <td>1.2.6, 0.2.4</td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2023:0321"
+                target="_blank"
+                >CVE-2021-44906</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>38</td>
+            <td><span class="pill sev-high">Critical</span></td>
+            <td>Node.js</td>
+            <td>minimist: prototype pollution</td>
+            <td>minimist</td>
+            <td>1.2.6, 0.2.4</td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2023:0321"
+                target="_blank"
+                >CVE-2021-44906</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>39</td>
+            <td><span class="pill sev-high">Critical</span></td>
+            <td>Node.js</td>
+            <td>minimist: prototype pollution</td>
+            <td>minimist</td>
+            <td>1.2.6, 0.2.4</td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2023:0321"
+                target="_blank"
+                >CVE-2021-44906</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>40</td>
+            <td><span class="pill sev-high">Critical</span></td>
+            <td>Node.js</td>
+            <td>minimist: prototype pollution</td>
+            <td>minimist</td>
+            <td>1.2.6, 0.2.4</td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2023:0321"
+                target="_blank"
+                >CVE-2021-44906</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>41</td>
+            <td><span class="pill sev-high">Critical</span></td>
+            <td>Node.js</td>
+            <td>minimist: prototype pollution</td>
+            <td>minimist</td>
+            <td>1.2.6, 0.2.4</td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2023:0321"
+                target="_blank"
+                >CVE-2021-44906</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>42</td>
+            <td><span class="pill sev-high">Critical</span></td>
+            <td>Node.js</td>
+            <td>
+              nodejs-mixin-deep: prototype pollution in function mixin-deep
+            </td>
+            <td>mixin-deep</td>
+            <td>1.3.2, 2.0.1</td>
+            <td>
+              <a
+                href="https://access.redhat.com/security/cve/CVE-2019-10746"
+                target="_blank"
+                >CVE-2019-10746</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>43</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>Denial of Service in mongodb</td>
+            <td>mongodb</td>
+            <td>3.1.13</td>
+            <td>
+              <a href="https://www.npmjs.com/advisories/1203" target="_blank"
+                >GHSA-mh5c-679w-hh4r</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>44</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>nconf: Prototype pollution in memory store</td>
+            <td>nconf</td>
+            <td>0.11.4</td>
+            <td>
+              <a
+                href="https://access.redhat.com/security/cve/CVE-2022-21803"
+                target="_blank"
+                >CVE-2022-21803</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>45</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>nconf: Prototype pollution in memory store</td>
+            <td>nconf</td>
+            <td>0.11.4</td>
+            <td>
+              <a
+                href="https://access.redhat.com/security/cve/CVE-2022-21803"
+                target="_blank"
+                >CVE-2022-21803</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>46</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>
+              path-to-regexp: Backtracking regular expressions cause ReDoS
+            </td>
+            <td>path-to-regexp</td>
+            <td>1.9.0, 0.1.10, 8.0.0, 3.3.0, 6.3.0</td>
+            <td>
+              <a
+                href="https://access.redhat.com/security/cve/CVE-2024-45296"
+                target="_blank"
+                >CVE-2024-45296</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>47</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>
+              path-to-regexp: path-to-regexp Unpatched `path-to-regexp` ReDoS in
+              0.1.x
+            </td>
+            <td>path-to-regexp</td>
+            <td>0.1.12</td>
+            <td>
+              <a
+                href="https://access.redhat.com/security/cve/CVE-2024-52798"
+                target="_blank"
+                >CVE-2024-52798</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>48</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>
+              express: &quot;qs&quot; prototype poisoning causes the hang of the
+              node process
+            </td>
+            <td>qs</td>
+            <td>
+              6.10.3, 6.9.7, 6.8.3, 6.7.3, 6.6.1, 6.5.3, 6.4.1, 6.3.3, 6.2.4
+            </td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2023:0050"
+                target="_blank"
+                >CVE-2022-24999</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>49</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>
+              express: &quot;qs&quot; prototype poisoning causes the hang of the
+              node process
+            </td>
+            <td>qs</td>
+            <td>
+              6.10.3, 6.9.7, 6.8.3, 6.7.3, 6.6.1, 6.5.3, 6.4.1, 6.3.3, 6.2.4
+            </td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2023:0050"
+                target="_blank"
+                >CVE-2022-24999</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>50</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>nodejs-semver: Regular expression denial of service</td>
+            <td>semver</td>
+            <td>7.5.2, 6.3.1, 5.7.2</td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2023:5363"
+                target="_blank"
+                >CVE-2022-25883</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>51</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>nodejs-semver: Regular expression denial of service</td>
+            <td>semver</td>
+            <td>7.5.2, 6.3.1, 5.7.2</td>
+            <td>
+              <a
+                href="https://access.redhat.com/errata/RHSA-2023:5363"
+                target="_blank"
+                >CVE-2022-25883</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>52</td>
+            <td><span class="pill sev-high">Critical</span></td>
+            <td>Node.js</td>
+            <td>nodejs-set-value: prototype pollution in function set-value</td>
+            <td>set-value</td>
+            <td>2.0.1, 3.0.1</td>
+            <td>
+              <a
+                href="https://access.redhat.com/security/cve/CVE-2019-10747"
+                target="_blank"
+                >CVE-2019-10747</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>53</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>
+              nodejs-set-value: type confusion allows bypass of CVE-2019-10747
+            </td>
+            <td>set-value</td>
+            <td>4.0.1, 2.0.1, 3.0.3</td>
+            <td>
+              <a
+                href="https://access.redhat.com/security/cve/CVE-2021-23440"
+                target="_blank"
+                >CVE-2021-23440</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>54</td>
+            <td><span class="pill sev-high">Critical</span></td>
+            <td>Node.js</td>
+            <td>nodejs-set-value: prototype pollution in function set-value</td>
+            <td>set-value</td>
+            <td>2.0.1, 3.0.1</td>
+            <td>
+              <a
+                href="https://access.redhat.com/security/cve/CVE-2019-10747"
+                target="_blank"
+                >CVE-2019-10747</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>55</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>
+              nodejs-set-value: type confusion allows bypass of CVE-2019-10747
+            </td>
+            <td>set-value</td>
+            <td>4.0.1, 2.0.1, 3.0.3</td>
+            <td>
+              <a
+                href="https://access.redhat.com/security/cve/CVE-2021-23440"
+                target="_blank"
+                >CVE-2021-23440</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>56</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>
+              Arbitrary local file read vulnerability during template rendering
+            </td>
+            <td>swig</td>
+            <td>&mdash;</td>
+            <td>
+              <a
+                href="https://github.com/node-swig/swig-templates/issues/88"
+                target="_blank"
+                >CVE-2023-25345</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>57</td>
+            <td><span class="pill sev-high">Critical</span></td>
+            <td>Node.js</td>
+            <td>
+              nodejs-underscore: Arbitrary code execution via the template
+              function
+            </td>
+            <td>underscore</td>
+            <td>1.12.1</td>
+            <td>
+              <a
+                href="https://access.redhat.com/security/cve/CVE-2021-23358"
+                target="_blank"
+                >CVE-2021-23358</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>58</td>
+            <td><span class="pill sev-high">High</span></td>
+            <td>Node.js</td>
+            <td>nodejs-y18n: prototype pollution vulnerability</td>
+            <td>y18n</td>
+            <td>3.2.2, 4.0.1, 5.0.5</td>
+            <td>
+              <a
+                href="https://access.redhat.com/security/cve/CVE-2020-7774"
+                target="_blank"
+                >CVE-2020-7774</a
+              >
+            </td>
+          </tr>
+
+          <tr class="sev-secret">
+            <td>59</td>
+            <td><span class="pill sev-secret">Secret</span></td>
+            <td>/home/node/app/artifacts/cert/server.key</td>
+            <td>
+              Asymmetric Private Key (match:
+              ****************************************************************)
+            </td>
+            <td>private-key</td>
+            <td>&mdash;</td>
+            <td>private-key</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

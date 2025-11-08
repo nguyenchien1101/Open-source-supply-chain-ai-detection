@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ZAP Vulnerability Report</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        background: #f3f7fb;
+        margin: 0;
+        padding: 28px;
+      }
+      .wrap {
+        max-width: 1300px;
+        margin: 0 auto;
+      }
+      .summary {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+      }
+      .badge {
+        background: #eef2ff;
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-weight: 600;
+      }
+      .badge-hi {
+        background: #fee2e2;
+      }
+      .badge-med {
+        background: #fff4e6;
+      }
+      .badge-low {
+        background: #e0f2ff;
+      }
+      .badge-inf {
+        background: #e2e8f0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 16px 40px rgba(2, 6, 23, 0.08);
+      }
+      thead th {
+        background: #0f172a;
+        color: #fff;
+        padding: 12px 14px;
+        text-align: left;
+        font-size: 13px;
+      }
+      tbody td {
+        padding: 12px 14px;
+        border-bottom: 1px solid #eef2f6;
+        vertical-align: top;
+        font-size: 13px;
+      }
+      .pill {
+        display: inline-block;
+        padding: 5px 12px;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 12px;
+      }
+      .sev-high {
+        background: #fff5f5;
+      }
+      .sev-med {
+        background: #fffaf0;
+      }
+      .sev-low {
+        background: #f0f9ff;
+      }
+      .sev-inf {
+        background: #e2e8f0;
+      }
+      .pill.sev-high {
+        background: #f8d7da;
+        color: #7f1d1d;
+      }
+      .pill.sev-med {
+        background: #fde68a;
+        color: #92400e;
+      }
+      .pill.sev-low {
+        background: #dbeafe;
+        color: #1e3a8a;
+      }
+      .pill.sev-inf {
+        background: #94a3b8;
+        color: #0f172a;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>ZAP Vulnerability Report</h1>
+      <div class="summary">
+        <span class="badge">Total: 19</span>
+        <span class="badge badge-hi">High: 0</span>
+        <span class="badge badge-med">Medium: 5</span>
+        <span class="badge badge-low">Low: 6</span>
+        <span class="badge badge-inf">Info: 8</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Risk</th>
+            <th>Target</th>
+            <th>Alert</th>
+            <th>URL</th>
+            <th>Param</th>
+            <th>Evidence</th>
+            <th>Solution</th>
+            <th>CWE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="sev-med">
+            <td>1</td>
+            <td><span class="pill sev-med">Medium</span></td>
+            <td>http://dacn:4000</td>
+            <td>CSP: Failure to Define Directive with No Fallback</td>
+            <td>http://dacn:4000/allocations/</td>
+            <td>Content-Security-Policy</td>
+            <td>default-src &#x27;self&#x27;</td>
+            <td>
+              &lt;p&gt;Ensure that your web server, application server, load
+              balancer, etc. is properly configured to set the
+              Content-Security-Policy header.&lt;/p&gt;
+            </td>
+            <td>693</td>
+          </tr>
+
+          <tr class="sev-med">
+            <td>2</td>
+            <td><span class="pill sev-med">Medium</span></td>
+            <td>http://dacn:4000</td>
+            <td>Content Security Policy (CSP) Header Not Set</td>
+            <td>http://dacn:4000/login</td>
+            <td></td>
+            <td></td>
+            <td>
+              &lt;p&gt;Ensure that your web server, application server, load
+              balancer, etc. is configured to set the Content-Security-Policy
+              header.&lt;/p&gt;
+            </td>
+            <td>693</td>
+          </tr>
+
+          <tr class="sev-med">
+            <td>3</td>
+            <td><span class="pill sev-med">Medium</span></td>
+            <td>http://dacn:4000</td>
+            <td>Missing Anti-clickjacking Header</td>
+            <td>http://dacn:4000/login</td>
+            <td>x-frame-options</td>
+            <td></td>
+            <td>
+              &lt;p&gt;Modern Web browsers support the Content-Security-Policy
+              and X-Frame-Options HTTP headers. Ensure one of them is set on all
+              web pages returned by your site/app.&lt;/p&gt;&lt;p&gt;If you
+              expect the page to be framed only by pages on your server (e.g.
+              it&#x27;s part of a FRAMESET) then you&#x27;ll want to use
+              SAMEORIGIN, otherwise if you never expect the page to be framed,
+              you should use DENY. Alternatively consider implementing Content
+              Security Policy&#x27;s &quot;frame-ancestors&quot;
+              directive.&lt;/p&gt;
+            </td>
+            <td>1021</td>
+          </tr>
+
+          <tr class="sev-med">
+            <td>4</td>
+            <td><span class="pill sev-med">Medium</span></td>
+            <td>http://dacn:4000</td>
+            <td>Source Code Disclosure - SQL</td>
+            <td>http://dacn:4000/tutorial</td>
+            <td></td>
+            <td>SELECT * FROM accounts WHERE username</td>
+            <td>
+              &lt;p&gt;Ensure that application Source Code is not available with
+              alternative extensions, and ensure that source code is not present
+              within other files or data deployed to the web server, or served
+              by the web server.&lt;/p&gt;
+            </td>
+            <td>540</td>
+          </tr>
+
+          <tr class="sev-med">
+            <td>5</td>
+            <td><span class="pill sev-med">Medium</span></td>
+            <td>http://dacn:4000</td>
+            <td>Vulnerable JS Library</td>
+            <td>http://dacn:4000/vendor/bootstrap/bootstrap.js</td>
+            <td></td>
+            <td>* Bootstrap v3.0.0</td>
+            <td>
+              &lt;p&gt;Upgrade to the latest version of the affected
+              library.&lt;/p&gt;
+            </td>
+            <td>1395</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>6</td>
+            <td><span class="pill sev-low">Low</span></td>
+            <td>http://dacn:4000</td>
+            <td>Cookie without SameSite Attribute</td>
+            <td>http://dacn:4000</td>
+            <td>connect.sid</td>
+            <td>set-cookie: connect.sid</td>
+            <td>
+              &lt;p&gt;Ensure that the SameSite attribute is set to either
+              &#x27;lax&#x27; or ideally &#x27;strict&#x27; for all
+              cookies.&lt;/p&gt;
+            </td>
+            <td>1275</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>7</td>
+            <td><span class="pill sev-low">Low</span></td>
+            <td>http://dacn:4000</td>
+            <td>Dangerous JS Functions</td>
+            <td>http://dacn:4000/tutorial</td>
+            <td></td>
+            <td>eval(</td>
+            <td>
+              &lt;p&gt;See the references for security advice on the use of
+              these functions.&lt;/p&gt;
+            </td>
+            <td>749</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>8</td>
+            <td><span class="pill sev-low">Low</span></td>
+            <td>http://dacn:4000</td>
+            <td>Insufficient Site Isolation Against Spectre Vulnerability</td>
+            <td>http://dacn:4000/login</td>
+            <td>Cross-Origin-Resource-Policy</td>
+            <td></td>
+            <td>
+              &lt;p&gt;Ensure that the application/web server sets the
+              Cross-Origin-Resource-Policy header appropriately, and that it
+              sets the Cross-Origin-Resource-Policy header to
+              &#x27;same-origin&#x27; for all web
+              pages.&lt;/p&gt;&lt;p&gt;&#x27;same-site&#x27; is considered as
+              less secured and should be avoided.&lt;/p&gt;&lt;p&gt;If resources
+              must be shared, set the header to
+              &#x27;cross-origin&#x27;.&lt;/p&gt;&lt;p&gt;If possible, ensure
+              that the end user uses a standards-compliant and modern web
+              browser that supports the Cross-Origin-Resource-Policy header
+              (https://caniuse.com/mdn-http_headers_cross-origin-resource-policy).&lt;/p&gt;
+            </td>
+            <td>693</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>9</td>
+            <td><span class="pill sev-low">Low</span></td>
+            <td>http://dacn:4000</td>
+            <td>Permissions Policy Header Not Set</td>
+            <td>http://dacn:4000/login</td>
+            <td></td>
+            <td></td>
+            <td>
+              &lt;p&gt;Ensure that your web server, application server, load
+              balancer, etc. is configured to set the Permissions-Policy
+              header.&lt;/p&gt;
+            </td>
+            <td>693</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>10</td>
+            <td><span class="pill sev-low">Low</span></td>
+            <td>http://dacn:4000</td>
+            <td>
+              Server Leaks Information via &quot;X-Powered-By&quot; HTTP
+              Response Header Field(s)
+            </td>
+            <td>http://dacn:4000</td>
+            <td></td>
+            <td>X-Powered-By: Express</td>
+            <td>
+              &lt;p&gt;Ensure that your web server, application server, load
+              balancer, etc. is configured to suppress &quot;X-Powered-By&quot;
+              headers.&lt;/p&gt;
+            </td>
+            <td>497</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>11</td>
+            <td><span class="pill sev-low">Low</span></td>
+            <td>http://dacn:4000</td>
+            <td>X-Content-Type-Options Header Missing</td>
+            <td>http://dacn:4000/images/owasplogo.png</td>
+            <td>x-content-type-options</td>
+            <td></td>
+            <td>
+              &lt;p&gt;Ensure that the application/web server sets the
+              Content-Type header appropriately, and that it sets the
+              X-Content-Type-Options header to &#x27;nosniff&#x27; for all web
+              pages.&lt;/p&gt;&lt;p&gt;If possible, ensure that the end user
+              uses a standards-compliant and modern web browser that does not
+              perform MIME-sniffing at all, or that can be directed by the web
+              application/web server to not perform MIME-sniffing.&lt;/p&gt;
+            </td>
+            <td>693</td>
+          </tr>
+
+          <tr class="sev-inf">
+            <td>12</td>
+            <td><span class="pill sev-inf">Info</span></td>
+            <td>http://dacn:4000</td>
+            <td>Authentication Request Identified</td>
+            <td>http://dacn:4000/login</td>
+            <td>userName</td>
+            <td>password</td>
+            <td>
+              &lt;p&gt;This is an informational alert rather than a
+              vulnerability and so there is nothing to fix.&lt;/p&gt;
+            </td>
+            <td>-1</td>
+          </tr>
+
+          <tr class="sev-inf">
+            <td>13</td>
+            <td><span class="pill sev-inf">Info</span></td>
+            <td>http://dacn:4000</td>
+            <td>Information Disclosure - Suspicious Comments</td>
+            <td>http://dacn:4000/tutorial</td>
+            <td></td>
+            <td>userName</td>
+            <td>
+              &lt;p&gt;Remove all comments that return information that may help
+              an attacker and fix any underlying problems they refer
+              to.&lt;/p&gt;
+            </td>
+            <td>615</td>
+          </tr>
+
+          <tr class="sev-inf">
+            <td>14</td>
+            <td><span class="pill sev-inf">Info</span></td>
+            <td>http://dacn:4000</td>
+            <td>Modern Web Application</td>
+            <td>http://dacn:4000/login</td>
+            <td></td>
+            <td>
+              &lt;a href=&quot;#&quot; class=&quot;dropdown-toggle&quot;
+              data-toggle=&quot;dropdown&quot; style=&quot;font-size:
+              larger&quot;&gt;&lt;i class=&quot;fa
+              fa-info-circle&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+            </td>
+            <td>
+              &lt;p&gt;This is an informational alert and so no changes are
+              required.&lt;/p&gt;
+            </td>
+            <td>-1</td>
+          </tr>
+
+          <tr class="sev-inf">
+            <td>15</td>
+            <td><span class="pill sev-inf">Info</span></td>
+            <td>http://dacn:4000</td>
+            <td>Non-Storable Content</td>
+            <td>http://dacn:4000</td>
+            <td></td>
+            <td>302</td>
+            <td>
+              &lt;p&gt;The content may be marked as storable by ensuring that
+              the following conditions are satisfied:&lt;/p&gt;&lt;p&gt;The
+              request method must be understood by the cache and defined as
+              being cacheable (&quot;GET&quot;, &quot;HEAD&quot;, and
+              &quot;POST&quot; are currently defined as
+              cacheable)&lt;/p&gt;&lt;p&gt;The response status code must be
+              understood by the cache (one of the 1XX, 2XX, 3XX, 4XX, or 5XX
+              response classes are generally understood)&lt;/p&gt;&lt;p&gt;The
+              &quot;no-store&quot; cache directive must not appear in the
+              request or response header fields&lt;/p&gt;&lt;p&gt;For caching by
+              &quot;shared&quot; caches such as &quot;proxy&quot; caches, the
+              &quot;private&quot; response directive must not appear in the
+              response&lt;/p&gt;&lt;p&gt;For caching by &quot;shared&quot;
+              caches such as &quot;proxy&quot; caches, the
+              &quot;Authorization&quot; header field must not appear in the
+              request, unless the response explicitly allows it (using one of
+              the &quot;must-revalidate&quot;, &quot;public&quot;, or
+              &quot;s-maxage&quot; Cache-Control response
+              directives)&lt;/p&gt;&lt;p&gt;In addition to the conditions above,
+              at least one of the following conditions must also be satisfied by
+              the response:&lt;/p&gt;&lt;p&gt;It must contain an
+              &quot;Expires&quot; header field&lt;/p&gt;&lt;p&gt;It must contain
+              a &quot;max-age&quot; response directive&lt;/p&gt;&lt;p&gt;For
+              &quot;shared&quot; caches such as &quot;proxy&quot; caches, it
+              must contain a &quot;s-maxage&quot; response
+              directive&lt;/p&gt;&lt;p&gt;It must contain a &quot;Cache Control
+              Extension&quot; that allows it to be cached&lt;/p&gt;&lt;p&gt;It
+              must have a status code that is defined as cacheable by default
+              (200, 203, 204, 206, 300, 301, 404, 405, 410, 414, 501).&lt;/p&gt;
+            </td>
+            <td>524</td>
+          </tr>
+
+          <tr class="sev-inf">
+            <td>16</td>
+            <td><span class="pill sev-inf">Info</span></td>
+            <td>http://dacn:4000</td>
+            <td>Session Management Response Identified</td>
+            <td>http://dacn:4000</td>
+            <td>connect.sid</td>
+            <td>connect.sid</td>
+            <td>
+              &lt;p&gt;This is an informational alert rather than a
+              vulnerability and so there is nothing to fix.&lt;/p&gt;
+            </td>
+            <td>-1</td>
+          </tr>
+
+          <tr class="sev-inf">
+            <td>17</td>
+            <td><span class="pill sev-inf">Info</span></td>
+            <td>http://dacn:4000</td>
+            <td>Storable and Cacheable Content</td>
+            <td>http://dacn:4000/login</td>
+            <td></td>
+            <td></td>
+            <td>
+              &lt;p&gt;Validate that the response does not contain sensitive,
+              personal or user-specific information. If it does, consider the
+              use of the following HTTP response headers, to limit, or prevent
+              the content being stored and retrieved from the cache by another
+              user:&lt;/p&gt;&lt;p&gt;Cache-Control: no-cache, no-store,
+              must-revalidate, private&lt;/p&gt;&lt;p&gt;Pragma:
+              no-cache&lt;/p&gt;&lt;p&gt;Expires: 0&lt;/p&gt;&lt;p&gt;This
+              configuration directs both HTTP 1.0 and HTTP 1.1 compliant caching
+              servers to not store the response, and to not retrieve the
+              response (without validation) from the cache, in response to a
+              similar request.&lt;/p&gt;
+            </td>
+            <td>524</td>
+          </tr>
+
+          <tr class="sev-inf">
+            <td>18</td>
+            <td><span class="pill sev-inf">Info</span></td>
+            <td>http://dacn:4000</td>
+            <td>Storable but Non-Cacheable Content</td>
+            <td>http://dacn:4000/images/owasplogo.png</td>
+            <td></td>
+            <td>max-age=0</td>
+            <td></td>
+            <td>524</td>
+          </tr>
+
+          <tr class="sev-inf">
+            <td>19</td>
+            <td><span class="pill sev-inf">Info</span></td>
+            <td>http://dacn:4000</td>
+            <td>User Controllable HTML Element Attribute (Potential XSS)</td>
+            <td>http://dacn:4000/signup</td>
+            <td>email</td>
+            <td></td>
+            <td>
+              &lt;p&gt;Validate all input and sanitize output it before writing
+              to any HTML attributes.&lt;/p&gt;
+            </td>
+            <td>20</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

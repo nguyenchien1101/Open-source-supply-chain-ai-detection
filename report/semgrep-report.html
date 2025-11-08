@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Semgrep Report</title>
+    <style>
+      :root {
+        --bg: #edf2f7;
+        --card: #ffffff;
+        --dark: #0f172a;
+      }
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        background: #edf2f7;
+        padding: 28px;
+      }
+      .wrap {
+        max-width: 1350px;
+        margin: 0 auto;
+      }
+      h1 {
+        margin-bottom: 14px;
+      }
+      .summary {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 18px;
+        flex-wrap: wrap;
+      }
+      .badge {
+        background: #e2e8f0;
+        padding: 7px 14px;
+        border-radius: 9999px;
+        font-size: 13px;
+      }
+      .badge-high {
+        background: #fee2e2;
+      }
+      .badge-medium {
+        background: #fef3c7;
+      }
+      .badge-low {
+        background: #e0f2fe;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #ffffff;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+      }
+      thead th {
+        background: #0f172a;
+        color: #ffffff;
+        text-align: left;
+        padding: 11px 14px;
+        font-size: 13px;
+        font-weight: 600;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      tbody td {
+        padding: 10px 14px;
+        font-size: 13px;
+        vertical-align: top;
+        border-bottom: 1px solid #e2e8f0;
+      }
+      tbody tr:hover {
+        background: #f8fafc;
+      }
+
+      /* mÃ u theo dÃ²ng */
+      .row-high {
+        background: #fff5f5;
+      }
+      .row-medium {
+        background: #fffbeb;
+      }
+      .row-low {
+        background: #eff6ff;
+      }
+
+      /* pill hiá»ƒn thá»‹ severity */
+      .sev-pill {
+        display: inline-block;
+        padding: 3px 10px;
+        border-radius: 9999px;
+        font-weight: 600;
+        font-size: 12px;
+      }
+      .sev-high {
+        background: #fca5a5;
+        color: #7f1d1d;
+      }
+      .sev-medium {
+        background: #fde68a;
+        color: #78350f;
+      }
+      .sev-low {
+        background: #bfdbfe;
+        color: #1e3a8a;
+      }
+
+      /* cá»™t message vÃ  rule Ä‘á»ƒ Ä‘á»c dá»… hÆ¡n */
+      td:nth-child(4) {
+        max-width: 420px;
+        white-space: normal;
+        word-break: break-word;
+      }
+      td:nth-child(5),
+      td:nth-child(6),
+      td:nth-child(7) {
+        max-width: 180px;
+        word-break: break-word;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Semgrep Vulnerability Report</h1>
+      <div class="summary">
+        <span class="badge">Total: 29</span>
+        <span class="badge badge-high">High: 7</span>
+        <span class="badge badge-medium">Medium: 21</span>
+        <span class="badge badge-low">Low: 1</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 40px">#</th>
+            <th style="width: 110px">Severity</th>
+            <th style="width: 230px">File:Line</th>
+            <th>Message</th>
+            <th style="width: 150px">CWE</th>
+            <th style="width: 150px">OWASP</th>
+            <th style="width: 180px">Rule ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-medium">
+            <td>1</td>
+            <td>
+              <span class="sev-pill sev-medium">Medium</span>
+            </td>
+            <td>app/routes/contributions.js:32</td>
+            <td>
+              Detected the use of eval(). eval() can be dangerous if used to
+              evaluate dynamic content. If this content can be input from
+              outside the program, this may be a code injection vulnerability.
+              Ensure evaluated content is not definable by external sources.
+            </td>
+            <td>
+              CWE-95: Improper Neutralization of Directives in Dynamically
+              Evaluated Code (&#x27;Eval Injection&#x27;)
+            </td>
+            <td>A03:2021 - Injection</td>
+            <td>javascript.browser.security.eval-detected.eval-detected</td>
+          </tr>
+
+          <tr class="row-high">
+            <td>2</td>
+            <td>
+              <span class="sev-pill sev-high">High</span>
+            </td>
+            <td>app/routes/contributions.js:32</td>
+            <td>
+              Found data from an Express or Next web request flowing to `eval`.
+              If this data is user-controllable this can lead to execution of
+              arbitrary system commands in the context of your application
+              process. Avoid `eval` whenever possible.
+            </td>
+            <td>
+              CWE-95: Improper Neutralization of Directives in Dynamically
+              Evaluated Code (&#x27;Eval Injection&#x27;)
+            </td>
+            <td>A03:2021 - Injection</td>
+            <td>
+              javascript.lang.security.audit.code-string-concat.code-string-concat
+            </td>
+          </tr>
+
+          <tr class="row-medium">
+            <td>3</td>
+            <td>
+              <span class="sev-pill sev-medium">Medium</span>
+            </td>
+            <td>app/routes/contributions.js:33</td>
+            <td>
+              Detected the use of eval(). eval() can be dangerous if used to
+              evaluate dynamic content. If this content can be input from
+              outside the program, this may be a code injection vulnerability.
+              Ensure evaluated content is not definable by external sources.
+            </td>
+            <td>
+              CWE-95: Improper Neutralization of Directives in Dynamically
+              Evaluated Code (&#x27;Eval Injection&#x27;)
+            </td>
+            <td>A03:2021 - Injection</td>
+            <td>javascript.browser.security.eval-detected.eval-detected</td>
+          </tr>
+
+          <tr class="row-high">
+            <td>4</td>
+            <td>
+              <span class="sev-pill sev-high">High</span>
+            </td>
+            <td>app/routes/contributions.js:33</td>
+            <td>
+              Found data from an Express or Next web request flowing to `eval`.
+              If this data is user-controllable this can lead to execution of
+              arbitrary system commands in the context of your application
+              process. Avoid `eval` whenever possible.
+            </td>
+            <td>
+              CWE-95: Improper Neutralization of Directives in Dynamically
+              Evaluated Code (&#x27;Eval Injection&#x27;)
+            </td>
+            <td>A03:2021 - Injection</td>
+            <td>
+              javascript.lang.security.audit.code-string-concat.code-string-concat
+            </td>
+          </tr>
+
+          <tr class="row-medium">
+            <td>5</td>
+            <td>
+              <span class="sev-pill sev-medium">Medium</span>
+            </td>
+            <td>app/routes/contributions.js:34</td>
+            <td>
+              Detected the use of eval(). eval() can be dangerous if used to
+              evaluate dynamic content. If this content can be input from
+              outside the program, this may be a code injection vulnerability.
+              Ensure evaluated content is not definable by external sources.
+            </td>
+            <td>
+              CWE-95: Improper Neutralization of Directives in Dynamically
+              Evaluated Code (&#x27;Eval Injection&#x27;)
+            </td>
+            <td>A03:2021 - Injection</td>
+            <td>javascript.browser.security.eval-detected.eval-detected</td>
+          </tr>
+
+          <tr class="row-high">
+            <td>6</td>
+            <td>
+              <span class="sev-pill sev-high">High</span>
+            </td>
+            <td>app/routes/contributions.js:34</td>
+            <td>
+              Found data from an Express or Next web request flowing to `eval`.
+              If this data is user-controllable this can lead to execution of
+              arbitrary system commands in the context of your application
+              process. Avoid `eval` whenever possible.
+            </td>
+            <td>
+              CWE-95: Improper Neutralization of Directives in Dynamically
+              Evaluated Code (&#x27;Eval Injection&#x27;)
+            </td>
+            <td>A03:2021 - Injection</td>
+            <td>
+              javascript.lang.security.audit.code-string-concat.code-string-concat
+            </td>
+          </tr>
+
+          <tr class="row-medium">
+            <td>7</td>
+            <td>
+              <span class="sev-pill sev-medium">Medium</span>
+            </td>
+            <td>app/routes/index.js:72</td>
+            <td>
+              The application redirects to a URL specified by user-supplied
+              input `req` that is not validated. This could redirect users to
+              malicious locations. Consider using an allow-list approach to
+              validate URLs, or warn users they are being redirected to a
+              third-party website.
+            </td>
+            <td>
+              CWE-601: URL Redirection to Untrusted Site (&#x27;Open
+              Redirect&#x27;)
+            </td>
+            <td>A01:2021 - Broken Access Control</td>
+            <td>
+              javascript.express.security.audit.express-open-redirect.express-open-redirect
+            </td>
+          </tr>
+
+          <tr class="row-medium">
+            <td>8</td>
+            <td>
+              <span class="sev-pill sev-medium">Medium</span>
+            </td>
+            <td>app/views/benefits.html:54</td>
+            <td>
+              Manually-created forms in django templates should specify a
+              csrf_token to prevent CSRF attacks.
+            </td>
+            <td>
+              C, W, E, -, 3, 5, 2, :, , C, r, o, s, s, -, S, i, t, e, , R, e, q,
+              u, e, s, t, , F, o, r, g, e, r, y, , (, C, S, R, F, )
+            </td>
+            <td></td>
+            <td>
+              python.django.security.django-no-csrf-token.django-no-csrf-token
+            </td>
+          </tr>
+
+          <tr class="row-medium">
+            <td>9</td>
+            <td>
+              <span class="sev-pill sev-medium">Medium</span>
+            </td>
+            <td>app/views/login.html:107</td>
+            <td>
+              Manually-created forms in django templates should specify a
+              csrf_token to prevent CSRF attacks.
+            </td>
+            <td>
+              C, W, E, -, 3, 5, 2, :, , C, r, o, s, s, -, S, i, t, e, , R, e, q,
+              u, e, s, t, , F, o, r, g, e, r, y, , (, C, S, R, F, )
+            </td>
+            <td></td>
+            <td>
+              python.django.security.django-no-csrf-token.django-no-csrf-token
+            </td>
+          </tr>
+
+          <tr class="row-medium">
+            <td>10</td>
+            <td>
+              <span class="sev-pill sev-medium">Medium</span>
+            </td>
+            <td>app/views/memos.html:15</td>
+            <td>
+              Manually-created forms in django templates should specify a
+              csrf_token to prevent CSRF attacks.
+            </td>
+            <td>
+              C, W, E, -, 3, 5, 2, :, , C, r, o, s, s, -, S, i, t, e, , R, e, q,
+              u, e, s, t, , F, o, r, g, e, r, y, , (, C, S, R, F, )
+            </td>
+            <td></td>
+            <td>
+              python.django.security.django-no-csrf-token.django-no-csrf-token
+            </td>
+          </tr>
+
+          <tr class="row-medium">
+            <td>11</td>
+            <td>
+              <span class="sev-pill sev-medium">Medium</span>
+            </td>
+            <td>app/views/tutorial/a2.html:207</td>
+            <td>
+              This link points to a plaintext HTTP URL. Prefer an encrypted
+              HTTPS URL if possible.
+            </td>
+            <td>CWE-319: Cleartext Transmission of Sensitive Information</td>
+            <td>
+              A03:2017 - Sensitive Data Exposure, A02:2021 - Cryptographic
+              Failures
+            </td>
+            <td>html.security.plaintext-http-link.plaintext-http-link</td>
+          </tr>
+
+          <tr class="row-medium">
+            <td>12</td>
+            <td>
+              <span class="sev-pill sev-medium">Medium</span>
+            </td>
+            <td>app/views/tutorial/a2.html:209</td>
+            <td>
+              This link points to a plaintext HTTP URL. Prefer an encrypted
+              HTTPS URL if possible.
+            </td>
+            <td>CWE-319: Cleartext Transmission of Sensitive Information</td>
+            <td>
+              A03:2017 - Sensitive Data Exposure, A02:2021 - Cryptographic
+              Failures
+            </td>
+            <td>html.security.plaintext-http-link.plaintext-http-link</td>
+          </tr>
+
+          <tr class="row-medium">
+            <td>13</td>
+            <td>
+              <span class="sev-pill sev-medium">Medium</span>
+            </td>
+            <td>app/views/tutorial/a2.html:210</td>
+            <td>
+              This link points to a plaintext HTTP URL. Prefer an encrypted
+              HTTPS URL if possible.
+            </td>
+            <td>CWE-319: Cleartext Transmission of Sensitive Information</td>
+            <td>
+              A03:2017 - Sensitive Data Exposure, A02:2021 - Cryptographic
+              Failures
+            </td>
+            <td>html.security.plaintext-http-link.plaintext-http-link</td>
+          </tr>
+
+          <tr class="row-medium">
+            <td>14</td>
+            <td>
+              <span class="sev-pill sev-medium">Medium</span>
+            </td>
+            <td>app/views/tutorial/a5.html:50</td>
+            <td>
+              This link points to a plaintext HTTP URL. Prefer an encrypted
+              HTTPS URL if possible.
+            </td>
+            <td>CWE-319: Cleartext Transmission of Sensitive Information</td>
+            <td>
+              A03:2017 - Sensitive Data Exposure, A02:2021 - Cryptographic
+              Failures
+            </td>
+            <td>html.security.plaintext-http-link.plaintext-http-link</td>
+          </tr>
+
+          <tr class="row-medium">
+            <td>15</td>
+            <td>
+              <span class="sev-pill sev-medium">Medium</span>
+            </td>
+            <td>app/views/tutorial/a5.html:51</td>
+            <td>
+              This link points to a plaintext HTTP URL. Prefer an encrypted
+              HTTPS URL if possible.
+            </td>
+            <td>CWE-319: Cleartext Transmission of Sensitive Information</td>
+            <td>
+              A03:2017 - Sensitive Data Exposure, A02:2021 - Cryptographic
+              Failures
+            </td>
+            <td>html.security.plaintext-http-link.plaintext-http-link</td>
+          </tr>
+
+          <tr class="row-high">
+            <td>16</td>
+            <td>
+              <span class="sev-pill sev-high">High</span>
+            </td>
+            <td>artifacts/cert/server.key:1</td>
+            <td>
+              Private Key detected. This is a sensitive credential and should
+              not be hardcoded here. Instead, store this in a separate, private
+              file.
+            </td>
+            <td>CWE-798: Use of Hard-coded Credentials</td>
+            <td>A07:2021 - Identification and Authentication Failures</td>
+            <td>
+              generic.secrets.security.detected-private-key.detected-private-key
+            </td>
+          </tr>
+
+          <tr class="row-high">
+            <td>17</td>
+            <td>
+              <span class="sev-pill sev-high">High</span>
+            </td>
+            <td>artifacts/db-reset.js:19</td>
+            <td>bcrypt hash detected</td>
+            <td>CWE-798: Use of Hard-coded Credentials</td>
+            <td>A07:2021 - Identification and Authentication Failures</td>
+            <td>
+              generic.secrets.security.detected-bcrypt-hash.detected-bcrypt-hash
+            </td>
+          </tr>
+
+          <tr class="row-high">
+            <td>18</td>
+            <td>
+              <span class="sev-pill sev-high">High</span>
+            </td>
+            <td>artifacts/db-reset.js:28</td>
+            <td>bcrypt hash detected</td>
+            <td>CWE-798: Use of Hard-coded Credentials</td>
+            <td>A07:2021 - Identification and Authentication Failures</td>
+            <td>
+              generic.secrets.security.detected-bcrypt-hash.detected-bcrypt-hash
+            </td>
+          </tr>
+
+          <tr class="row-high">
+            <td>19</td>
+            <td>
+              <span class="sev-pill sev-high">High</span>
+            </td>
+            <td>artifacts/db-reset.js:36</td>
+            <td>bcrypt hash detected</td>
+            <td>CWE-798: Use of Hard-coded Credentials</td>
+            <td>A07:2021 - Identification and Authentication Failures</td>
+            <td>
+              generic.secrets.security.detected-bcrypt-hash.detected-bcrypt-hash
+            </td>
+          </tr>
+
+          <tr class="row-medium">
+            <td>20</td>
+            <td>
+              <span class="sev-pill sev-medium">Medium</span>
+            </td>
+            <td>docker-compose.yml:13</td>
+            <td>
+              Service &#x27;mongo&#x27; allows for privilege escalation via
+              setuid or setgid binaries. Add &#x27;no-new-privileges:true&#x27;
+              in &#x27;security_opt&#x27; to prevent this.
+            </td>
+            <td>
+              CWE-732: Incorrect Permission Assignment for Critical Resource
+            </td>
+            <td>
+              A05:2021 - Security Misconfiguration, A06:2017 - Security
+              Misconfiguration
+            </td>
+            <td>
+              yaml.docker-compose.security.no-new-privileges.no-new-privileges
+            </td>
+          </tr>
+
+          <tr class="row-medium">
+            <td>21</td>
+            <td>
+              <span class="sev-pill sev-medium">Medium</span>
+            </td>
+            <td>docker-compose.yml:13</td>
+            <td>
+              Service &#x27;mongo&#x27; is running with a writable root
+              filesystem. This may allow malicious applications to download and
+              run additional payloads, or modify container files. If an
+              application inside a container has to save something temporarily
+              consider using a tmpfs. Add &#x27;read_only: true&#x27; to this
+              service to prevent this.
+            </td>
+            <td>
+              CWE-732: Incorrect Permission Assignment for Critical Resource
+            </td>
+            <td>
+              A05:2021 - Security Misconfiguration, A06:2017 - Security
+              Misconfiguration
+            </td>
+            <td>
+              yaml.docker-compose.security.writable-filesystem-service.writable-filesystem-service
+            </td>
+          </tr>
+
+          <tr class="row-low">
+            <td>22</td>
+            <td>
+              <span class="sev-pill sev-low">Low</span>
+            </td>
+            <td>server.js:15</td>
+            <td>
+              A CSRF middleware was not detected in your express application.
+              Ensure you are either using one such as `csurf` or `csrf` (see
+              rule references) and/or you are properly doing CSRF validation in
+              your routes with a token or cookies.
+            </td>
+            <td>CWE-352: Cross-Site Request Forgery (CSRF)</td>
+            <td>A01:2021 - Broken Access Control</td>
+            <td>
+              javascript.express.security.audit.express-check-csurf-middleware-usage.express-check-csurf-middleware-usage
+            </td>
+          </tr>
+
+          <tr class="row-medium">
+            <td>23</td>
+            <td>
+              <span class="sev-pill sev-medium">Medium</span>
+            </td>
+            <td>server.js:78</td>
+            <td>
+              Donâ€™t use the default session cookie name Using the default
+              session cookie name can open your app to attacks. The security
+              issue posed is similar to X-Powered-By: a potential attacker can
+              use it to fingerprint the server and target attacks accordingly.
+            </td>
+            <td>CWE-522: Insufficiently Protected Credentials</td>
+            <td>
+              A02:2017 - Broken Authentication, A04:2021 - Insecure Design
+            </td>
+            <td>
+              javascript.express.security.audit.express-cookie-settings.express-cookie-session-default-name
+            </td>
+          </tr>
+
+          <tr class="row-medium">
+            <td>24</td>
+            <td>
+              <span class="sev-pill sev-medium">Medium</span>
+            </td>
+            <td>server.js:78</td>
+            <td>
+              Default session middleware settings: `domain` not set. It
+              indicates the domain of the cookie; use it to compare against the
+              domain of the server in which the URL is being requested. If they
+              match, then check the path attribute next.
+            </td>
+            <td>CWE-522: Insufficiently Protected Credentials</td>
+            <td>
+              A02:2017 - Broken Authentication, A04:2021 - Insecure Design
+            </td>
+            <td>
+              javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-domain
+            </td>
+          </tr>
+
+          <tr class="row-medium">
+            <td>25</td>
+            <td>
+              <span class="sev-pill sev-medium">Medium</span>
+            </td>
+            <td>server.js:78</td>
+            <td>
+              Default session middleware settings: `expires` not set. Use it to
+              set expiration date for persistent cookies.
+            </td>
+            <td>CWE-522: Insufficiently Protected Credentials</td>
+            <td>
+              A02:2017 - Broken Authentication, A04:2021 - Insecure Design
+            </td>
+            <td>
+              javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-expires
+            </td>
+          </tr>
+
+          <tr class="row-medium">
+            <td>26</td>
+            <td>
+              <span class="sev-pill sev-medium">Medium</span>
+            </td>
+            <td>server.js:78</td>
+            <td>
+              Default session middleware settings: `httpOnly` not set. It
+              ensures the cookie is sent only over HTTP(S), not client
+              JavaScript, helping to protect against cross-site scripting
+              attacks.
+            </td>
+            <td>CWE-522: Insufficiently Protected Credentials</td>
+            <td>
+              A02:2017 - Broken Authentication, A04:2021 - Insecure Design
+            </td>
+            <td>
+              javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-httponly
+            </td>
+          </tr>
+
+          <tr class="row-medium">
+            <td>27</td>
+            <td>
+              <span class="sev-pill sev-medium">Medium</span>
+            </td>
+            <td>server.js:78</td>
+            <td>
+              Default session middleware settings: `path` not set. It indicates
+              the path of the cookie; use it to compare against the request
+              path. If this and domain match, then send the cookie in the
+              request.
+            </td>
+            <td>CWE-522: Insufficiently Protected Credentials</td>
+            <td>
+              A02:2017 - Broken Authentication, A04:2021 - Insecure Design
+            </td>
+            <td>
+              javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-path
+            </td>
+          </tr>
+
+          <tr class="row-medium">
+            <td>28</td>
+            <td>
+              <span class="sev-pill sev-medium">Medium</span>
+            </td>
+            <td>server.js:78</td>
+            <td>
+              Default session middleware settings: `secure` not set. It ensures
+              the browser only sends the cookie over HTTPS.
+            </td>
+            <td>CWE-522: Insufficiently Protected Credentials</td>
+            <td>
+              A02:2017 - Broken Authentication, A04:2021 - Insecure Design
+            </td>
+            <td>
+              javascript.express.security.audit.express-cookie-settings.express-cookie-session-no-secure
+            </td>
+          </tr>
+
+          <tr class="row-medium">
+            <td>29</td>
+            <td>
+              <span class="sev-pill sev-medium">Medium</span>
+            </td>
+            <td>server.js:145</td>
+            <td>
+              Checks for any usage of http servers instead of https servers.
+              Encourages the usage of https protocol instead of http, which does
+              not have TLS and is therefore unencrypted. Using http can lead to
+              man-in-the-middle attacks in which the attacker is able to read
+              sensitive information.
+            </td>
+            <td>
+              C, W, E, -, 3, 1, 9, :, , C, l, e, a, r, t, e, x, t, , T, r, a, n,
+              s, m, i, s, s, i, o, n, , o, f, , S, e, n, s, i, t, i, v, e, , I,
+              n, f, o, r, m, a, t, i, o, n
+            </td>
+            <td>
+              A02:2021 - Cryptographic Failures, A03:2017 - Sensitive Data
+              Exposure
+            </td>
+            <td>
+              problem-based-packs.insecure-transport.js-node.using-http-server.using-http-server
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

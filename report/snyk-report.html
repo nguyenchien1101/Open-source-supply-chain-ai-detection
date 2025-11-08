@@ -1,0 +1,2533 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Snyk Report</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        background: #f1f5f9;
+        padding: 24px;
+      }
+      .wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      h1 {
+        margin-bottom: 12px;
+      }
+      .summary {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+      }
+      .badge {
+        background: #e2e8f0;
+        padding: 6px 12px;
+        border-radius: 9999px;
+        font-size: 13px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+      }
+      thead th {
+        background: #0f172a;
+        color: white;
+        text-align: left;
+        padding: 10px 12px;
+        font-weight: 600;
+        font-size: 13px;
+      }
+      tbody td {
+        padding: 8px 12px;
+        border-bottom: 1px solid #e2e8f0;
+        font-size: 13px;
+        vertical-align: top;
+      }
+      tbody tr:hover {
+        background: #f8fafc;
+      }
+      td:nth-child(4),
+      td:nth-child(5) {
+        max-width: 380px;
+        word-break: break-word;
+        white-space: normal;
+      }
+      .sev {
+        text-transform: capitalize;
+        font-weight: 600;
+      }
+      .sev-critical td.sev {
+        background: #fee2e2;
+      }
+      .sev-high td.sev {
+        background: #ffe4e6;
+      }
+      .sev-medium td.sev {
+        background: #fef9c3;
+      }
+      .sev-low td.sev {
+        background: #e0f2fe;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Snyk Vulnerability Report</h1>
+      <div class="summary">
+        <span class="badge">Total: 302</span>
+        <span class="badge" style="background: #fee2e2">Critical: 0</span>
+        <span class="badge" style="background: #ffe4e6">High: 113</span>
+        <span class="badge" style="background: #fef9c3">Medium: 55</span>
+        <span class="badge" style="background: #e0f2fe">Low: 134</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 40px">#</th>
+            <th style="width: 90px">Severity</th>
+            <th style="width: 220px">Package@version</th>
+            <th>Title</th>
+            <th>Fix</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="sev-high">
+            <td>1</td>
+            <td class="sev">high</td>
+            <td>body-parser@1.18.3</td>
+            <td>Asymmetric Resource Consumption (Amplification)</td>
+            <td>Update to: 1.20.3</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>2</td>
+            <td class="sev">high</td>
+            <td>body-parser@1.18.3</td>
+            <td>Asymmetric Resource Consumption (Amplification)</td>
+            <td>Update to: 1.20.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>3</td>
+            <td class="sev">low</td>
+            <td>brace-expansion@1.1.11</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 1.1.12, 2.0.2, 3.0.1, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>4</td>
+            <td class="sev">low</td>
+            <td>brace-expansion@1.1.11</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 1.1.12, 2.0.2, 3.0.1, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>5</td>
+            <td class="sev">low</td>
+            <td>brace-expansion@1.1.11</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 1.1.12, 2.0.2, 3.0.1, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>6</td>
+            <td class="sev">low</td>
+            <td>brace-expansion@1.1.11</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 1.1.12, 2.0.2, 3.0.1, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>7</td>
+            <td class="sev">low</td>
+            <td>brace-expansion@1.1.11</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 1.1.12, 2.0.2, 3.0.1, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>8</td>
+            <td class="sev">low</td>
+            <td>brace-expansion@1.1.11</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 1.1.12, 2.0.2, 3.0.1, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>9</td>
+            <td class="sev">low</td>
+            <td>brace-expansion@1.1.11</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 1.1.12, 2.0.2, 3.0.1, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>10</td>
+            <td class="sev">low</td>
+            <td>brace-expansion@1.1.11</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 1.1.12, 2.0.2, 3.0.1, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>11</td>
+            <td class="sev">high</td>
+            <td>braces@2.3.2</td>
+            <td>Excessive Platform Resource Consumption within a Loop</td>
+            <td>Update to: 3.0.3</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>12</td>
+            <td class="sev">high</td>
+            <td>braces@2.3.2</td>
+            <td>Excessive Platform Resource Consumption within a Loop</td>
+            <td>Update to: 3.0.3</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>13</td>
+            <td class="sev">high</td>
+            <td>braces@2.3.2</td>
+            <td>Excessive Platform Resource Consumption within a Loop</td>
+            <td>Update to: 3.0.3</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>14</td>
+            <td class="sev">high</td>
+            <td>bson@1.0.9</td>
+            <td>Internal Property Tampering</td>
+            <td>Update to: 1.1.4</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>15</td>
+            <td class="sev">high</td>
+            <td>bson@1.0.9</td>
+            <td>Internal Property Tampering</td>
+            <td>Update to: 1.1.4</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>16</td>
+            <td class="sev">medium</td>
+            <td>cookie@0.3.1</td>
+            <td>Cross-site Scripting (XSS)</td>
+            <td>Update to: 0.7.0</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>17</td>
+            <td class="sev">medium</td>
+            <td>cookie@0.3.1</td>
+            <td>Cross-site Scripting (XSS)</td>
+            <td>Update to: 0.7.0</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>18</td>
+            <td class="sev">medium</td>
+            <td>cookie@0.3.1</td>
+            <td>Cross-site Scripting (XSS)</td>
+            <td>Update to: 0.7.0</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>19</td>
+            <td class="sev">high</td>
+            <td>decode-uri-component@0.2.0</td>
+            <td>Denial of Service (DoS)</td>
+            <td>Update to: 0.2.2</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>20</td>
+            <td class="sev">high</td>
+            <td>decode-uri-component@0.2.0</td>
+            <td>Denial of Service (DoS)</td>
+            <td>Update to: 0.2.2</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>21</td>
+            <td class="sev">high</td>
+            <td>decode-uri-component@0.2.0</td>
+            <td>Denial of Service (DoS)</td>
+            <td>Update to: 0.2.2</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>22</td>
+            <td class="sev">high</td>
+            <td>decode-uri-component@0.2.0</td>
+            <td>Denial of Service (DoS)</td>
+            <td>Update to: 0.2.2</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>23</td>
+            <td class="sev">high</td>
+            <td>decode-uri-component@0.2.0</td>
+            <td>Denial of Service (DoS)</td>
+            <td>Update to: 0.2.2</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>24</td>
+            <td class="sev">high</td>
+            <td>decode-uri-component@0.2.0</td>
+            <td>Denial of Service (DoS)</td>
+            <td>Update to: 0.2.2</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>25</td>
+            <td class="sev">high</td>
+            <td>decode-uri-component@0.2.0</td>
+            <td>Denial of Service (DoS)</td>
+            <td>Update to: 0.2.2</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>26</td>
+            <td class="sev">high</td>
+            <td>decode-uri-component@0.2.0</td>
+            <td>Denial of Service (DoS)</td>
+            <td>Update to: 0.2.2</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>27</td>
+            <td class="sev">high</td>
+            <td>decode-uri-component@0.2.0</td>
+            <td>Denial of Service (DoS)</td>
+            <td>Update to: 0.2.2</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>28</td>
+            <td class="sev">high</td>
+            <td>decode-uri-component@0.2.0</td>
+            <td>Denial of Service (DoS)</td>
+            <td>Update to: 0.2.2</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>29</td>
+            <td class="sev">high</td>
+            <td>decode-uri-component@0.2.0</td>
+            <td>Denial of Service (DoS)</td>
+            <td>Update to: 0.2.2</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>30</td>
+            <td class="sev">medium</td>
+            <td>express@4.16.4</td>
+            <td>Open Redirect</td>
+            <td>Update to: 4.19.2, 5.0.0-beta.3</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>31</td>
+            <td class="sev">medium</td>
+            <td>express@4.16.4</td>
+            <td>Cross-site Scripting</td>
+            <td>Update to: 4.20.0, 5.0.0</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>32</td>
+            <td class="sev">medium</td>
+            <td>glob-parent@3.1.0</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 5.1.2</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>33</td>
+            <td class="sev">medium</td>
+            <td>helmet-csp@1.2.2</td>
+            <td>Configuration Override</td>
+            <td>Update to: 2.9.2</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>34</td>
+            <td class="sev">medium</td>
+            <td>i@0.3.6</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 0.3.7</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>35</td>
+            <td class="sev">medium</td>
+            <td>i@0.3.6</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 0.3.7</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>36</td>
+            <td class="sev">medium</td>
+            <td>i@0.3.6</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 0.3.7</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>37</td>
+            <td class="sev">medium</td>
+            <td>i@0.3.6</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 0.3.7</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>38</td>
+            <td class="sev">medium</td>
+            <td>i@0.3.6</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 0.3.7</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>39</td>
+            <td class="sev">medium</td>
+            <td>inflight@1.0.6</td>
+            <td>Missing Release of Resource after Effective Lifetime</td>
+            <td>Upgrade path: forever@3.0.4</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>40</td>
+            <td class="sev">medium</td>
+            <td>inflight@1.0.6</td>
+            <td>Missing Release of Resource after Effective Lifetime</td>
+            <td>Upgrade path: forever@3.0.0 â†’ forever-monitor@3.0.3</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>41</td>
+            <td class="sev">medium</td>
+            <td>inflight@1.0.6</td>
+            <td>Missing Release of Resource after Effective Lifetime</td>
+            <td>No direct fix</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>42</td>
+            <td class="sev">medium</td>
+            <td>inflight@1.0.6</td>
+            <td>Missing Release of Resource after Effective Lifetime</td>
+            <td>Upgrade path: forever@3.0.0 â†’ forever-monitor@3.0.3</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>43</td>
+            <td class="sev">medium</td>
+            <td>inflight@1.0.6</td>
+            <td>Missing Release of Resource after Effective Lifetime</td>
+            <td>No direct fix</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>44</td>
+            <td class="sev">medium</td>
+            <td>inflight@1.0.6</td>
+            <td>Missing Release of Resource after Effective Lifetime</td>
+            <td>No direct fix</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>45</td>
+            <td class="sev">high</td>
+            <td>ini@1.3.5</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 1.3.6</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>46</td>
+            <td class="sev">high</td>
+            <td>ini@1.3.5</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 1.3.6</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>47</td>
+            <td class="sev">high</td>
+            <td>ini@1.3.5</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 1.3.6</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>48</td>
+            <td class="sev">high</td>
+            <td>ini@1.3.5</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 1.3.6</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>49</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>50</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>51</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>52</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>53</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>54</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>55</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>56</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>57</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>58</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>59</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>60</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>61</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>62</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>63</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>64</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>65</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>66</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>67</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>68</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>69</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>70</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>71</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>72</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>73</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>74</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>75</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>76</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>77</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>78</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>79</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>80</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>81</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>82</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>83</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>84</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>85</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>86</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>87</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>88</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>89</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>90</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>91</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>92</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>93</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>94</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>95</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>96</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>97</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>98</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>99</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>100</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>101</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>102</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>103</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>104</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>105</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>106</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>107</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>108</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>109</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>110</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>111</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>112</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>113</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>114</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>115</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>116</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>117</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>118</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>119</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>120</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>121</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>122</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>123</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>124</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>125</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>126</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>127</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>128</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>129</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>130</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>131</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>132</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>133</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>134</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>135</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>136</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>137</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>138</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>139</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>140</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>141</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>142</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>143</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>144</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>145</td>
+            <td class="sev">low</td>
+            <td>kind-of@6.0.2</td>
+            <td>Validation Bypass</td>
+            <td>Update to: 6.0.3</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>146</td>
+            <td class="sev">medium</td>
+            <td>marked@0.3.5</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 0.6.2</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>147</td>
+            <td class="sev">medium</td>
+            <td>marked@0.3.5</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 4.0.10</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>148</td>
+            <td class="sev">medium</td>
+            <td>marked@0.3.5</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 4.0.10</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>149</td>
+            <td class="sev">medium</td>
+            <td>marked@0.3.5</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 0.4.0</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>150</td>
+            <td class="sev">medium</td>
+            <td>marked@0.3.5</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 1.1.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>151</td>
+            <td class="sev">high</td>
+            <td>marked@0.3.5</td>
+            <td>Cross-site Scripting (XSS)</td>
+            <td>Update to: 0.3.6</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>152</td>
+            <td class="sev">high</td>
+            <td>marked@0.3.5</td>
+            <td>Cross-site Scripting (XSS)</td>
+            <td>Update to: 0.3.7</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>153</td>
+            <td class="sev">high</td>
+            <td>marked@0.3.5</td>
+            <td>Cross-site Scripting (XSS)</td>
+            <td>Update to: 0.3.9</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>154</td>
+            <td class="sev">medium</td>
+            <td>marked@0.3.5</td>
+            <td>Cross-site Scripting (XSS)</td>
+            <td>Update to: 0.3.9</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>155</td>
+            <td class="sev">high</td>
+            <td>marked@0.3.5</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 0.3.9</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>156</td>
+            <td class="sev">high</td>
+            <td>marked@0.3.5</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 0.3.18</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>157</td>
+            <td class="sev">medium</td>
+            <td>micromatch@3.1.10</td>
+            <td>Inefficient Regular Expression Complexity</td>
+            <td>Update to: 4.0.8</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>158</td>
+            <td class="sev">medium</td>
+            <td>micromatch@3.1.10</td>
+            <td>Inefficient Regular Expression Complexity</td>
+            <td>Update to: 4.0.8</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>159</td>
+            <td class="sev">medium</td>
+            <td>minimatch@3.0.4</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 3.0.5</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>160</td>
+            <td class="sev">medium</td>
+            <td>minimatch@3.0.4</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 3.0.5</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>161</td>
+            <td class="sev">medium</td>
+            <td>minimatch@3.0.4</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 3.0.5</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>162</td>
+            <td class="sev">medium</td>
+            <td>minimatch@3.0.4</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 3.0.5</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>163</td>
+            <td class="sev">medium</td>
+            <td>minimatch@3.0.4</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 3.0.5</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>164</td>
+            <td class="sev">medium</td>
+            <td>minimatch@3.0.4</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 3.0.5</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>165</td>
+            <td class="sev">medium</td>
+            <td>minimatch@3.0.4</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 3.0.5</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>166</td>
+            <td class="sev">medium</td>
+            <td>minimatch@3.0.4</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 3.0.5</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>167</td>
+            <td class="sev">low</td>
+            <td>minimist@0.0.10</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.4, 1.2.6</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>168</td>
+            <td class="sev">medium</td>
+            <td>minimist@0.0.10</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.1, 1.2.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>169</td>
+            <td class="sev">low</td>
+            <td>minimist@0.0.10</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.4, 1.2.6</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>170</td>
+            <td class="sev">medium</td>
+            <td>minimist@0.0.10</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.1, 1.2.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>171</td>
+            <td class="sev">low</td>
+            <td>minimist@0.0.10</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.4, 1.2.6</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>172</td>
+            <td class="sev">medium</td>
+            <td>minimist@0.0.10</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.1, 1.2.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>173</td>
+            <td class="sev">low</td>
+            <td>minimist@0.0.10</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.4, 1.2.6</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>174</td>
+            <td class="sev">medium</td>
+            <td>minimist@0.0.10</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.1, 1.2.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>175</td>
+            <td class="sev">low</td>
+            <td>minimist@0.0.10</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.4, 1.2.6</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>176</td>
+            <td class="sev">medium</td>
+            <td>minimist@0.0.10</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.1, 1.2.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>177</td>
+            <td class="sev">low</td>
+            <td>minimist@0.0.8</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.4, 1.2.6</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>178</td>
+            <td class="sev">medium</td>
+            <td>minimist@0.0.8</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.1, 1.2.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>179</td>
+            <td class="sev">low</td>
+            <td>minimist@0.0.8</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.4, 1.2.6</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>180</td>
+            <td class="sev">medium</td>
+            <td>minimist@0.0.8</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.1, 1.2.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>181</td>
+            <td class="sev">low</td>
+            <td>minimist@0.0.8</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.4, 1.2.6</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>182</td>
+            <td class="sev">medium</td>
+            <td>minimist@0.0.8</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.1, 1.2.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>183</td>
+            <td class="sev">low</td>
+            <td>minimist@0.0.8</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.4, 1.2.6</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>184</td>
+            <td class="sev">medium</td>
+            <td>minimist@0.0.8</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.1, 1.2.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>185</td>
+            <td class="sev">low</td>
+            <td>minimist@0.0.8</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.4, 1.2.6</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>186</td>
+            <td class="sev">medium</td>
+            <td>minimist@0.0.8</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.1, 1.2.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>187</td>
+            <td class="sev">low</td>
+            <td>minimist@0.0.8</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.4, 1.2.6</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>188</td>
+            <td class="sev">medium</td>
+            <td>minimist@0.0.8</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.1, 1.2.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>189</td>
+            <td class="sev">low</td>
+            <td>minimist@0.0.8</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.4, 1.2.6</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>190</td>
+            <td class="sev">medium</td>
+            <td>minimist@0.0.8</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.1, 1.2.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>191</td>
+            <td class="sev">low</td>
+            <td>minimist@0.0.8</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.4, 1.2.6</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>192</td>
+            <td class="sev">medium</td>
+            <td>minimist@0.0.8</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.1, 1.2.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>193</td>
+            <td class="sev">low</td>
+            <td>minimist@1.2.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.4, 1.2.6</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>194</td>
+            <td class="sev">medium</td>
+            <td>minimist@1.2.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.1, 1.2.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>195</td>
+            <td class="sev">low</td>
+            <td>minimist@1.2.5</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.2.4, 1.2.6</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>196</td>
+            <td class="sev">high</td>
+            <td>mixin-deep@1.3.1</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 1.3.2</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>197</td>
+            <td class="sev">high</td>
+            <td>mixin-deep@1.3.1</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 1.3.2</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>198</td>
+            <td class="sev">high</td>
+            <td>mixin-deep@1.3.1</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 1.3.2</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>199</td>
+            <td class="sev">high</td>
+            <td>mixin-deep@1.3.1</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 1.3.2</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>200</td>
+            <td class="sev">high</td>
+            <td>mixin-deep@1.3.1</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 1.3.2</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>201</td>
+            <td class="sev">high</td>
+            <td>mixin-deep@1.3.1</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 1.3.2</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>202</td>
+            <td class="sev">high</td>
+            <td>mixin-deep@1.3.1</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 1.3.2</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>203</td>
+            <td class="sev">high</td>
+            <td>mixin-deep@1.3.1</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 1.3.2</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>204</td>
+            <td class="sev">high</td>
+            <td>mixin-deep@1.3.1</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 1.3.2</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>205</td>
+            <td class="sev">high</td>
+            <td>mixin-deep@1.3.1</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 1.3.2</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>206</td>
+            <td class="sev">high</td>
+            <td>mixin-deep@1.3.1</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 1.3.2</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>207</td>
+            <td class="sev">high</td>
+            <td>mongodb@2.2.36</td>
+            <td>Denial of Service (DoS)</td>
+            <td>Update to: 3.1.13</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>208</td>
+            <td class="sev">high</td>
+            <td>nconf@0.6.9</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.11.4</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>209</td>
+            <td class="sev">high</td>
+            <td>nconf@0.6.9</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.11.4</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>210</td>
+            <td class="sev">high</td>
+            <td>nconf@0.10.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 0.11.4</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>211</td>
+            <td class="sev">medium</td>
+            <td>on-headers@1.0.1</td>
+            <td>Improper Handling of Unexpected Data Type</td>
+            <td>Update to: 1.1.0</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>212</td>
+            <td class="sev">medium</td>
+            <td>path-to-regexp@0.1.7</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 0.1.10, 1.9.0, 3.3.0, 6.3.0, 8.0.0</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>213</td>
+            <td class="sev">medium</td>
+            <td>path-to-regexp@0.1.7</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 0.1.12</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>214</td>
+            <td class="sev">high</td>
+            <td>qs@6.5.2</td>
+            <td>Prototype Poisoning</td>
+            <td>
+              Update to: 6.2.4, 6.3.3, 6.4.1, 6.5.3, 6.6.1, 6.7.3, 6.8.3, 6.9.7,
+              6.10.3
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>215</td>
+            <td class="sev">high</td>
+            <td>qs@6.5.2</td>
+            <td>Prototype Poisoning</td>
+            <td>
+              Update to: 6.2.4, 6.3.3, 6.4.1, 6.5.3, 6.6.1, 6.7.3, 6.8.3, 6.9.7,
+              6.10.3
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>216</td>
+            <td class="sev">high</td>
+            <td>qs@6.5.2</td>
+            <td>Prototype Poisoning</td>
+            <td>
+              Update to: 6.2.4, 6.3.3, 6.4.1, 6.5.3, 6.6.1, 6.7.3, 6.8.3, 6.9.7,
+              6.10.3
+            </td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>217</td>
+            <td class="sev">high</td>
+            <td>semver@5.7.0</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 5.7.2, 6.3.1, 7.5.2</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>218</td>
+            <td class="sev">high</td>
+            <td>semver@5.6.0</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 5.7.2, 6.3.1, 7.5.2</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>219</td>
+            <td class="sev">low</td>
+            <td>send@0.16.2</td>
+            <td>Cross-site Scripting</td>
+            <td>Update to: 0.19.0, 1.1.0</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>220</td>
+            <td class="sev">low</td>
+            <td>send@0.16.2</td>
+            <td>Cross-site Scripting</td>
+            <td>Update to: 0.19.0, 1.1.0</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>221</td>
+            <td class="sev">low</td>
+            <td>serve-static@1.13.2</td>
+            <td>Cross-site Scripting</td>
+            <td>Update to: 1.16.0, 2.1.0</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>222</td>
+            <td class="sev">high</td>
+            <td>set-value@2.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.3, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>223</td>
+            <td class="sev">high</td>
+            <td>set-value@2.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>224</td>
+            <td class="sev">high</td>
+            <td>set-value@2.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.3, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>225</td>
+            <td class="sev">high</td>
+            <td>set-value@2.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>226</td>
+            <td class="sev">high</td>
+            <td>set-value@2.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.3, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>227</td>
+            <td class="sev">high</td>
+            <td>set-value@2.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>228</td>
+            <td class="sev">high</td>
+            <td>set-value@2.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.3, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>229</td>
+            <td class="sev">high</td>
+            <td>set-value@2.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>230</td>
+            <td class="sev">high</td>
+            <td>set-value@2.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.3, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>231</td>
+            <td class="sev">high</td>
+            <td>set-value@2.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>232</td>
+            <td class="sev">high</td>
+            <td>set-value@2.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.3, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>233</td>
+            <td class="sev">high</td>
+            <td>set-value@2.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>234</td>
+            <td class="sev">high</td>
+            <td>set-value@2.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.3, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>235</td>
+            <td class="sev">high</td>
+            <td>set-value@2.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>236</td>
+            <td class="sev">high</td>
+            <td>set-value@2.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.3, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>237</td>
+            <td class="sev">high</td>
+            <td>set-value@2.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>238</td>
+            <td class="sev">high</td>
+            <td>set-value@2.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.3, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>239</td>
+            <td class="sev">high</td>
+            <td>set-value@2.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>240</td>
+            <td class="sev">high</td>
+            <td>set-value@2.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.3, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>241</td>
+            <td class="sev">high</td>
+            <td>set-value@2.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>242</td>
+            <td class="sev">high</td>
+            <td>set-value@2.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.3, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>243</td>
+            <td class="sev">high</td>
+            <td>set-value@2.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>244</td>
+            <td class="sev">high</td>
+            <td>set-value@0.4.3</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.3, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>245</td>
+            <td class="sev">high</td>
+            <td>set-value@0.4.3</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>246</td>
+            <td class="sev">high</td>
+            <td>set-value@0.4.3</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.3, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>247</td>
+            <td class="sev">high</td>
+            <td>set-value@0.4.3</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>248</td>
+            <td class="sev">high</td>
+            <td>set-value@0.4.3</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.3, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>249</td>
+            <td class="sev">high</td>
+            <td>set-value@0.4.3</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>250</td>
+            <td class="sev">high</td>
+            <td>set-value@0.4.3</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.3, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>251</td>
+            <td class="sev">high</td>
+            <td>set-value@0.4.3</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>252</td>
+            <td class="sev">high</td>
+            <td>set-value@0.4.3</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.3, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>253</td>
+            <td class="sev">high</td>
+            <td>set-value@0.4.3</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>254</td>
+            <td class="sev">high</td>
+            <td>set-value@0.4.3</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.3, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>255</td>
+            <td class="sev">high</td>
+            <td>set-value@0.4.3</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>256</td>
+            <td class="sev">high</td>
+            <td>set-value@0.4.3</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.3, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>257</td>
+            <td class="sev">high</td>
+            <td>set-value@0.4.3</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>258</td>
+            <td class="sev">high</td>
+            <td>set-value@0.4.3</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.3, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>259</td>
+            <td class="sev">high</td>
+            <td>set-value@0.4.3</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>260</td>
+            <td class="sev">high</td>
+            <td>set-value@0.4.3</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.3, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>261</td>
+            <td class="sev">high</td>
+            <td>set-value@0.4.3</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>262</td>
+            <td class="sev">high</td>
+            <td>set-value@0.4.3</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.3, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>263</td>
+            <td class="sev">high</td>
+            <td>set-value@0.4.3</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>264</td>
+            <td class="sev">high</td>
+            <td>set-value@0.4.3</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.3, 4.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>265</td>
+            <td class="sev">high</td>
+            <td>set-value@0.4.3</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1, 3.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>266</td>
+            <td class="sev">high</td>
+            <td>tar@4.4.8</td>
+            <td>Arbitrary File Overwrite</td>
+            <td>Update to: 3.2.3, 4.4.15, 5.0.7, 6.1.2</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>267</td>
+            <td class="sev">high</td>
+            <td>tar@4.4.8</td>
+            <td>Arbitrary File Overwrite</td>
+            <td>Update to: 3.2.2, 4.4.14, 5.0.6, 6.1.1</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>268</td>
+            <td class="sev">low</td>
+            <td>tar@4.4.8</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 6.1.4, 5.0.8, 4.4.16</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>269</td>
+            <td class="sev">high</td>
+            <td>tar@4.4.8</td>
+            <td>Arbitrary File Write</td>
+            <td>Update to: 6.1.7, 5.0.8, 4.4.16</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>270</td>
+            <td class="sev">high</td>
+            <td>tar@4.4.8</td>
+            <td>Arbitrary File Write</td>
+            <td>Update to: 6.1.9, 5.0.10, 4.4.18</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>271</td>
+            <td class="sev">high</td>
+            <td>tar@4.4.8</td>
+            <td>Arbitrary File Write</td>
+            <td>Update to: 6.1.9, 5.0.10, 4.4.18</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>272</td>
+            <td class="sev">medium</td>
+            <td>tar@4.4.8</td>
+            <td>
+              Uncontrolled Resource Consumption (&#x27;Resource
+              Exhaustion&#x27;)
+            </td>
+            <td>Update to: 6.2.1</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>273</td>
+            <td class="sev">medium</td>
+            <td>uglify-js@2.4.24</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 3.14.3</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>274</td>
+            <td class="sev">medium</td>
+            <td>uglify-js@2.4.24</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 2.6.0</td>
+          </tr>
+
+          <tr class="sev-medium">
+            <td>275</td>
+            <td class="sev">medium</td>
+            <td>underscore@1.9.1</td>
+            <td>Arbitrary Code Injection</td>
+            <td>Update to: 1.13.0-2, 1.12.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>276</td>
+            <td class="sev">high</td>
+            <td>unset-value@1.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>277</td>
+            <td class="sev">high</td>
+            <td>unset-value@1.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>278</td>
+            <td class="sev">high</td>
+            <td>unset-value@1.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>279</td>
+            <td class="sev">high</td>
+            <td>unset-value@1.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>280</td>
+            <td class="sev">high</td>
+            <td>unset-value@1.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>281</td>
+            <td class="sev">high</td>
+            <td>unset-value@1.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>282</td>
+            <td class="sev">high</td>
+            <td>unset-value@1.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>283</td>
+            <td class="sev">high</td>
+            <td>unset-value@1.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>284</td>
+            <td class="sev">high</td>
+            <td>unset-value@1.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>285</td>
+            <td class="sev">high</td>
+            <td>unset-value@1.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>286</td>
+            <td class="sev">high</td>
+            <td>unset-value@1.0.0</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 2.0.1</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>287</td>
+            <td class="sev">high</td>
+            <td>utile@0.2.1</td>
+            <td>Prototype Pollution</td>
+            <td>No direct fix</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>288</td>
+            <td class="sev">low</td>
+            <td>utile@0.2.1</td>
+            <td>Uninitialized Memory Exposure</td>
+            <td>No direct fix</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>289</td>
+            <td class="sev">high</td>
+            <td>utile@0.2.1</td>
+            <td>Prototype Pollution</td>
+            <td>Upgrade path: forever@3.0.0 â†’ forever-monitor@3.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>290</td>
+            <td class="sev">low</td>
+            <td>utile@0.2.1</td>
+            <td>Uninitialized Memory Exposure</td>
+            <td>Upgrade path: forever@3.0.0 â†’ forever-monitor@3.0.3</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>291</td>
+            <td class="sev">high</td>
+            <td>utile@0.2.1</td>
+            <td>Prototype Pollution</td>
+            <td>No direct fix</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>292</td>
+            <td class="sev">low</td>
+            <td>utile@0.2.1</td>
+            <td>Uninitialized Memory Exposure</td>
+            <td>No direct fix</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>293</td>
+            <td class="sev">high</td>
+            <td>utile@0.3.0</td>
+            <td>Prototype Pollution</td>
+            <td>Upgrade path: forever@3.0.4</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>294</td>
+            <td class="sev">low</td>
+            <td>utile@0.3.0</td>
+            <td>Uninitialized Memory Exposure</td>
+            <td>Upgrade path: forever@3.0.4</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>295</td>
+            <td class="sev">high</td>
+            <td>utile@0.3.0</td>
+            <td>Prototype Pollution</td>
+            <td>Upgrade path: forever@3.0.0 â†’ forever-monitor@3.0.3</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>296</td>
+            <td class="sev">low</td>
+            <td>utile@0.3.0</td>
+            <td>Uninitialized Memory Exposure</td>
+            <td>Upgrade path: forever@3.0.0 â†’ forever-monitor@3.0.3</td>
+          </tr>
+
+          <tr class="sev-high">
+            <td>297</td>
+            <td class="sev">high</td>
+            <td>y18n@3.2.1</td>
+            <td>Prototype Pollution</td>
+            <td>Update to: 3.2.2, 4.0.1, 5.0.5</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>298</td>
+            <td class="sev">low</td>
+            <td>debug@4.1.1</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 2.6.9, 3.1.0, 3.2.7, 4.3.1</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>299</td>
+            <td class="sev">low</td>
+            <td>debug@2.2.0</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 2.6.9, 3.1.0, 3.2.7, 4.3.1</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>300</td>
+            <td class="sev">low</td>
+            <td>debug@2.2.0</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 2.6.9, 3.1.0, 3.2.7, 4.3.1</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>301</td>
+            <td class="sev">low</td>
+            <td>ms@0.7.1</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 2.0.0</td>
+          </tr>
+
+          <tr class="sev-low">
+            <td>302</td>
+            <td class="sev">low</td>
+            <td>ms@0.7.1</td>
+            <td>Regular Expression Denial of Service (ReDoS)</td>
+            <td>Update to: 2.0.0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

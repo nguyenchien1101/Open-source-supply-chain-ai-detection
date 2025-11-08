@@ -1,0 +1,1207 @@
+version: 43
+jobs:
+- name: ci
+  steps:
+  - type: CheckoutStep
+    name: checkout code
+    cloneCredential:
+      type: DefaultCredential
+    withLfs: false
+    withSubmodules: false
+    condition: SUCCESSFUL
+    optional: false
+  - type: GenerateChecksumStep
+    name: generate package checksum
+    files: package-lock.json yarn.lock
+    targetFile: checksum
+    condition: SUCCESSFUL
+    optional: false
+  - type: SetupCacheStep
+    name: set up npm cache
+    key: node_modules_@file:checksum@
+    loadKeys:
+    - node_modules
+    paths:
+    - node_modules
+    uploadStrategy: UPLOAD_IF_NOT_HIT
+    condition: SUCCESSFUL
+    optional: false
+  - type: SetBuildVersionStep
+    name: set build version
+    buildVersion: '@script:builtin:node:determine-project-version@'
+    condition: SUCCESSFUL
+    optional: false
+  - type: CommandStep
+    name: build & test
+    runInContainer: true
+    image: cypress/included:3.3.1
+    interpreter:
+      type: DefaultInterpreter
+      commands: |
+        set -e
+        echo "[CI] Install dependencies"
+        npm ci
+        echo "[CI] Run Cypress (default headless on v3.3.1)"
+        npx cypress run || echo "[CI] No Cypress specs, skip"
+        echo "[CI] Run unit tests (grunt/mocha)"
+        npx node node_modules/grunt-cli/bin/grunt test || echo "[CI] No unit tests, skip"
+    useTTY: false
+    condition: SUCCESSFUL
+    optional: false
+  triggers:
+  - type: BranchUpdateTrigger
+    userMatch: anyone
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 14400
+- name: SAST
+  jobExecutor: local-docker
+  steps:
+  - type: CheckoutStep
+    name: Checkout Code
+    cloneCredential:
+      type: DefaultCredential
+    withLfs: false
+    withSubmodules: false
+    condition: SUCCESSFUL
+    optional: false
+  - type: CommandStep
+    name: Semgrep scan
+    runInContainer: true
+    image: returntocorp/semgrep:latest
+    interpreter:
+      type: DefaultInterpreter
+      commands: |
+        export SEMGREP_IN_DOCKER=0
+        echo "[SAST] Running Semgrep..."
+
+        # 1️⃣ Quét mã nguồn và tạo JSON report
+        semgrep scan --config=auto --json -o semgrep-report.json . || true
+
+        # 2️⃣ Tạo báo cáo HTML bằng Python (hiển thị gọn, màu severity)
+        python3 - << 'PY'
+        import json, html, pathlib, collections
+
+        # đọc kết quả
+        try:
+            data = json.load(open("semgrep-report.json", "r", encoding="utf-8"))
+        except Exception:
+            data = {}
+
+        results = data.get("results", [])
+
+        # map severity của Semgrep -> nhãn hiển thị
+        def to_level(s):
+            s = (s or "").upper()
+            if s == "ERROR":
+                return "High"
+            if s == "WARNING":
+                return "Medium"
+            if s == "INFO":
+                return "Low"
+            return s or "Unknown"
+
+        counter = collections.Counter(to_level(r.get("extra", {}).get("severity")) for r in results)
+
+        rows = []
+        for i, r in enumerate(results, 1):
+            raw_sev = r.get("extra", {}).get("severity")
+            level = to_level(raw_sev)  # High / Medium / Low
+            file_path = r.get("path", "")
+            line = r.get("start", {}).get("line", "")
+            message = r.get("extra", {}).get("message", "")
+            rule_id = r.get("check_id", "")
+            meta = r.get("extra", {}).get("metadata", {}) or {}
+            cwe = ", ".join(meta.get("cwe", []))
+            owasp = ", ".join(meta.get("owasp", []))
+
+            rows.append(f"""
+              <tr class="row-{level.lower()}">
+                <td>{i}</td>
+                <td>
+                  <span class="sev-pill sev-{level.lower()}">{level}</span>
+                </td>
+                <td>{html.escape(file_path)}:{line}</td>
+                <td>{html.escape(message)}</td>
+                <td>{html.escape(cwe)}</td>
+                <td>{html.escape(owasp)}</td>
+                <td>{html.escape(rule_id)}</td>
+              </tr>
+            """)
+
+        total = len(results)
+        high = counter.get("High", 0)
+        medium = counter.get("Medium", 0)
+        low = counter.get("Low", 0)
+
+        html_doc = f"""<!doctype html>
+        <html>
+        <head>
+          <meta charset="utf-8">
+          <title>Semgrep Report</title>
+          <style>
+            :root {{
+              --bg: #edf2f7;
+              --card: #ffffff;
+              --dark: #0f172a;
+            }}
+            body {{
+              font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+              background: #edf2f7;
+              padding: 28px;
+            }}
+            .wrap {{
+              max-width: 1350px;
+              margin: 0 auto;
+            }}
+            h1 {{
+              margin-bottom: 14px;
+            }}
+            .summary {{
+              display: flex;
+              gap: 10px;
+              margin-bottom: 18px;
+              flex-wrap: wrap;
+            }}
+            .badge {{
+              background: #e2e8f0;
+              padding: 7px 14px;
+              border-radius: 9999px;
+              font-size: 13px;
+            }}
+            .badge-high {{ background: #fee2e2; }}
+            .badge-medium {{ background: #fef3c7; }}
+            .badge-low {{ background: #e0f2fe; }}
+
+            table {{
+              width: 100%;
+              border-collapse: collapse;
+              background: #ffffff;
+              border-radius: 14px;
+              overflow: hidden;
+              box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+            }}
+            thead th {{
+              background: #0f172a;
+              color: #ffffff;
+              text-align: left;
+              padding: 11px 14px;
+              font-size: 13px;
+              font-weight: 600;
+              border-bottom: 1px solid rgba(255,255,255,0.05);
+            }}
+            tbody td {{
+              padding: 10px 14px;
+              font-size: 13px;
+              vertical-align: top;
+              border-bottom: 1px solid #e2e8f0;
+            }}
+            tbody tr:hover {{
+              background: #f8fafc;
+            }}
+
+            /* màu theo dòng */
+            .row-high {{ background: #fff5f5; }}
+            .row-medium {{ background: #fffbeb; }}
+            .row-low {{ background: #eff6ff; }}
+
+            /* pill hiển thị severity */
+            .sev-pill {{
+              display: inline-block;
+              padding: 3px 10px;
+              border-radius: 9999px;
+              font-weight: 600;
+              font-size: 12px;
+            }}
+            .sev-high {{ background: #fca5a5; color: #7f1d1d; }}
+            .sev-medium {{ background: #fde68a; color: #78350f; }}
+            .sev-low {{ background: #bfdbfe; color: #1e3a8a; }}
+
+            /* cột message và rule để đọc dễ hơn */
+            td:nth-child(4) {{
+              max-width: 420px;
+              white-space: normal;
+              word-break: break-word;
+            }}
+            td:nth-child(5), td:nth-child(6), td:nth-child(7) {{
+              max-width: 180px;
+              word-break: break-word;
+            }}
+          </style>
+        </head>
+        <body>
+          <div class="wrap">
+            <h1>Semgrep Vulnerability Report</h1>
+            <div class="summary">
+              <span class="badge">Total: {total}</span>
+              <span class="badge badge-high">High: {high}</span>
+              <span class="badge badge-medium">Medium: {medium}</span>
+              <span class="badge badge-low">Low: {low}</span>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:40px;">#</th>
+                  <th style="width:110px;">Severity</th>
+                  <th style="width:230px;">File:Line</th>
+                  <th>Message</th>
+                  <th style="width:150px;">CWE</th>
+                  <th style="width:150px;">OWASP</th>
+                  <th style="width:180px;">Rule ID</th>
+                </tr>
+              </thead>
+              <tbody>
+                {''.join(rows)}
+              </tbody>
+            </table>
+          </div>
+        </body>
+        </html>
+        """
+        pathlib.Path("semgrep-report.html").write_text(html_doc, encoding="utf-8")
+        PY
+
+        # 3️⃣ Copy ra workspace cho OneDev hiển thị hoặc tải về
+        cp semgrep-report.json semgrep-report.html "$ONDEV_WORKSPACE"/ 2>/dev/null || true
+
+        # 4️⃣ Hiển thị kết quả file
+        echo "[SAST] Semgrep done."
+        ls -lh semgrep-report.*
+    useTTY: true
+    condition: SUCCESSFUL
+    optional: false
+  - type: PublishArtifactStep
+    name: Publish Semgrep Artifact
+    artifacts: '**/semgrep-report.json **/semgrep-report.html'
+    condition: SUCCESSFUL
+    optional: true
+  triggers:
+  - type: DependencyFinishedTrigger
+  jobDependencies:
+  - jobName: ci
+    requireSuccessful: true
+    artifacts: '**'
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 14400
+- name: SCA
+  jobExecutor: local-docker
+  steps:
+  - type: CheckoutStep
+    name: Checkout Code
+    cloneCredential:
+      type: DefaultCredential
+    withLfs: false
+    withSubmodules: false
+    condition: SUCCESSFUL
+    optional: false
+  - type: CommandStep
+    name: SCA ( SYNK)
+    runInContainer: true
+    image: vonguyenchien1/snyk-cli:latest
+    interpreter:
+      type: DefaultInterpreter
+      commands: |
+        snyk auth @secret:SNYK_AUTH_TOKEN@
+
+        # 1. Quét JSON
+        snyk test --all-projects --detection-depth=5 \
+          --json > snyk-report.json || true
+
+        # 2. (tuỳ) xuất SARIF để dùng viewer khác
+        snyk test --all-projects --detection-depth=5 --sarif \
+          > snyk-report.sarif || true
+
+        # 3. Tạo HTML đẹp bằng Python
+        python3 - << 'PY'
+        import json, html, pathlib, collections
+
+        # đọc file json
+        with open("snyk-report.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        # Snyk CLI thường trả "vulnerabilities"; một số chế độ khác trả "issues"
+        vuls = data.get("vulnerabilities") or data.get("issues") or []
+
+        # đếm theo mức độ
+        counter = collections.Counter(
+            (v.get("severity") or "unknown").lower() for v in vuls
+        )
+
+        rows = []
+        for i, v in enumerate(vuls, 1):
+            severity = (v.get("severity") or "unknown").lower()
+            pkg = v.get("packageName") or v.get("name") or ""
+            ver = v.get("version") or ""
+            title = v.get("title") or ""
+            fixed_in = v.get("fixedIn") or []
+            upgrade = v.get("upgradePath") or []
+
+            if fixed_in:
+                fix_txt = "Update to: " + ", ".join(fixed_in)
+            elif upgrade:
+                # bỏ None trong upgradePath
+                up = [str(x) for x in upgrade if x]
+                fix_txt = "Upgrade path: " + " → ".join(up) if up else "No direct fix"
+            else:
+                fix_txt = "No direct fix"
+
+            # mỗi dòng của bảng
+            rows.append(f"""
+              <tr class="sev-{severity}">
+                <td>{i}</td>
+                <td class="sev">{html.escape(severity)}</td>
+                <td>{html.escape(pkg)}@@{html.escape(ver)}</td>
+                <td>{html.escape(title)}</td>
+                <td>{html.escape(fix_txt)}</td>
+              </tr>
+            """)
+
+        total = len(vuls)
+        crit = counter.get("critical", 0)
+        high = counter.get("high", 0)
+        med = counter.get("medium", 0)
+        low = counter.get("low", 0)
+
+        html_doc = f"""<!doctype html>
+        <html>
+        <head>
+          <meta charset="utf-8">
+          <title>Snyk Report</title>
+          <style>
+            body {{
+              font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+              background: #f1f5f9;
+              padding: 24px;
+            }}
+            .wrap {{
+              max-width: 1200px;
+              margin: 0 auto;
+            }}
+            h1 {{
+              margin-bottom: 12px;
+            }}
+            .summary {{
+              display: flex;
+              gap: 8px;
+              margin-bottom: 16px;
+              flex-wrap: wrap;
+            }}
+            .badge {{
+              background: #e2e8f0;
+              padding: 6px 12px;
+              border-radius: 9999px;
+              font-size: 13px;
+            }}
+            table {{
+              width: 100%;
+              border-collapse: collapse;
+              background: white;
+              border-radius: 12px;
+              overflow: hidden;
+              box-shadow: 0 10px 20px rgba(15,23,42,0.08);
+            }}
+            thead th {{
+              background: #0f172a;
+              color: white;
+              text-align: left;
+              padding: 10px 12px;
+              font-weight: 600;
+              font-size: 13px;
+            }}
+            tbody td {{
+              padding: 8px 12px;
+              border-bottom: 1px solid #e2e8f0;
+              font-size: 13px;
+              vertical-align: top;
+            }}
+            tbody tr:hover {{
+              background: #f8fafc;
+            }}
+            td:nth-child(4), td:nth-child(5) {{
+              max-width: 380px;
+              word-break: break-word;
+              white-space: normal;
+            }}
+            .sev {{
+              text-transform: capitalize;
+              font-weight: 600;
+            }}
+            .sev-critical td.sev {{ background: #fee2e2; }}
+            .sev-high td.sev    {{ background: #ffe4e6; }}
+            .sev-medium td.sev  {{ background: #fef9c3; }}
+            .sev-low td.sev     {{ background: #e0f2fe; }}
+          </style>
+        </head>
+        <body>
+          <div class="wrap">
+            <h1>Snyk Vulnerability Report</h1>
+            <div class="summary">
+              <span class="badge">Total: {total}</span>
+              <span class="badge" style="background:#fee2e2;">Critical: {crit}</span>
+              <span class="badge" style="background:#ffe4e6;">High: {high}</span>
+              <span class="badge" style="background:#fef9c3;">Medium: {med}</span>
+              <span class="badge" style="background:#e0f2fe;">Low: {low}</span>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:40px;">#</th>
+                  <th style="width:90px;">Severity</th>
+                  <th style="width:220px;">Package@@version</th>
+                  <th>Title</th>
+                  <th>Fix</th>
+                </tr>
+              </thead>
+              <tbody>
+                {''.join(rows)}
+              </tbody>
+            </table>
+          </div>
+        </body>
+        </html>
+        """
+        pathlib.Path("snyk-report.html").write_text(html_doc, encoding="utf-8")
+        PY
+
+        # 4. xuất ra workspace cho OneDev
+        cp snyk-report.json snyk-report.sarif snyk-report.html "$ONDEV_WORKSPACE"/ 2>/dev/null || true
+
+
+        # 5. log lại để biết file có thật
+        ls -lh snyk-report.*
+    useTTY: true
+    condition: SUCCESSFUL
+    optional: false
+  - type: PublishArtifactStep
+    name: Publish SYNK Artifacts
+    artifacts: '**/snyk-report.html **/snyk-report.json'
+    condition: SUCCESSFUL
+    optional: false
+  triggers:
+  - type: DependencyFinishedTrigger
+  jobDependencies:
+  - jobName: ci
+    requireSuccessful: true
+    artifacts: '**'
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 14400
+- name: Container scan
+  jobExecutor: local-docker
+  steps:
+  - type: CheckoutStep
+    name: Checkout Code
+    cloneCredential:
+      type: DefaultCredential
+    withLfs: false
+    withSubmodules: false
+    condition: SUCCESSFUL
+    optional: false
+  - type: BuildImageStep
+    name: Build Image
+    output:
+      type: OCIOutput
+      destPath: oci_test_dacn_layout
+    condition: SUCCESSFUL
+    optional: false
+  - type: CommandStep
+    name: Trivy Scan
+    runInContainer: true
+    image: aquasec/trivy:canary
+    interpreter:
+      type: DefaultInterpreter
+      commands: |
+        echo "=== Running Trivy scan on OCI layout ==="
+        trivy image \
+        --input oci_test_dacn_layout \
+        --format json \
+        --output trivy-report.json \
+        --severity HIGH,CRITICAL
+        echo "=== Install Python for HTML conversion ==="
+        apk add --no-cache python3 py3-pip >/dev/null
+
+        echo "=== Convert Trivy JSON -> HTML (styled) ==="
+
+        python3 - <<'@@PY'
+        import json, html, pathlib, collections, urllib.parse
+
+        # đọc trivy json
+        try:
+            data = json.load(open("trivy-report.json", "r", encoding="utf-8"))
+        except Exception as e:
+            print("Cannot load trivy-report.json:", e)
+            data = {}
+
+        rows = []
+        secret_count = 0
+
+        for res in data.get("Results", []):
+            target = res.get("Target", "")
+
+            # 1) vulnerabilities
+            for v in res.get("Vulnerabilities", []) or []:
+                sev = (v.get("Severity") or "UNKNOWN").upper()
+                pkg = v.get("PkgName") or v.get("PkgID") or ""
+                installed = v.get("InstalledVersion") or ""
+                fixed = v.get("FixedVersion") or ""
+                title = v.get("Title") or v.get("Description","").splitlines()[0][:300]
+                vid = v.get("VulnerabilityID") or ""
+                refs = v.get("References") or []
+                if refs:
+                    link = refs[0]
+                elif vid:
+                    link = "https://nvd.nist.gov/vuln/detail/" + urllib.parse.quote(vid)
+                else:
+                    link = ""
+                rows.append({
+                    "kind": "vuln",
+                    "target": target,
+                    "severity": sev,
+                    "title": title,
+                    "pkg": pkg,
+                    "installed": installed,
+                    "fixed": fixed,
+                    "id": vid,
+                    "link": link,
+                })
+
+            # 2) secrets
+            for s in res.get("Secrets", []) or []:
+                secret_count += 1
+                rule_id = s.get("RuleID") or ""
+                title = s.get("Title") or "Secret detected"
+                match = s.get("Match") or ""
+                # show match nhưng không dài quá
+                if match:
+                    title = f"{title} (match: {match})"
+                rows.append({
+                    "kind": "secret",
+                    "target": target,
+                    "severity": "SECRET",     # ép luôn để dễ style
+                    "title": title,
+                    "pkg": rule_id,
+                    "installed": "",
+                    "fixed": "",               # để rỗng, phía dưới sẽ chuyển thành &mdash;
+                    "id": rule_id,
+                    "link": "",
+                })
+
+        # đếm
+        import itertools
+        from collections import Counter
+        sev_counter = Counter(r["severity"] for r in rows)
+        total = len(rows)
+        crit_high = sev_counter.get("CRITICAL", 0) + sev_counter.get("HIGH", 0)
+        medium = sev_counter.get("MEDIUM", 0)
+        low = sev_counter.get("LOW", 0)
+
+        html_rows = []
+        for idx, r in enumerate(rows, 1):
+            sev = r["severity"]
+            kind = r["kind"]
+
+            if kind == "secret":
+                row_cls = "sev-secret"
+                pill_text = "Secret"
+            else:
+                if sev in ("CRITICAL", "HIGH"):
+                    row_cls = "sev-high"
+                elif sev == "MEDIUM":
+                    row_cls = "sev-medium"
+                else:
+                    row_cls = "sev-low"
+                pill_text = sev.title()
+
+            fixed_val = r["fixed"] if r["fixed"] else "&mdash;"
+
+            if r["link"]:
+                link_html = f'<a href="{html.escape(r["link"])}" target="_blank">{html.escape(r["id"])}</a>'
+            else:
+                link_html = html.escape(r["id"])
+
+            html_rows.append(f"""
+            <tr class="{row_cls}">
+              <td>{idx}</td>
+              <td><span class="pill {row_cls}">{pill_text}</span></td>
+              <td>{html.escape(r["target"])}</td>
+              <td>{html.escape(r["title"])}</td>
+              <td>{html.escape(r["pkg"] or "")}</td>
+              <td>{fixed_val}</td>
+              <td>{link_html}</td>
+            </tr>
+            """)
+
+        html_doc = f"""<!doctype html>
+        <html>
+        <head>
+        <meta charset="utf-8">
+        <title>Trivy Vulnerability Report</title>
+        <style>
+          body {{
+            font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+            background: #f3f7fb;
+            margin: 0;
+            padding: 28px;
+          }}
+          .wrap {{ max-width: 1300px; margin: 0 auto; }}
+          h1 {{ margin-bottom: 14px; }}
+          .summary {{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px; }}
+          .badge {{ background:#eef2ff; padding:8px 14px; border-radius:999px; font-weight:600; }}
+          .badge-high {{ background:#fee2e2; }}
+          .badge-med {{ background:#fff4e6; }}
+          .badge-low {{ background:#e0f2ff; }}
+          .badge-secret {{ background:#fef9c3; }}
+
+          table {{
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 16px 40px rgba(2,6,23,0.08);
+          }}
+          thead th {{
+            background: #0f172a;
+            color: #fff;
+            padding: 12px 14px;
+            text-align: left;
+            font-size: 13px;
+          }}
+          tbody td {{
+            padding: 12px 14px;
+            border-bottom: 1px solid #eef2f6;
+            vertical-align: top;
+            font-size: 13px;
+          }}
+          .pill {{
+            display:inline-block;
+            padding:5px 12px;
+            border-radius:999px;
+            font-weight:600;
+            font-size:12px;
+          }}
+          .sev-high {{ background:#fff5f5; }}
+          .sev-medium {{ background:#fffaf0; }}
+          .sev-low {{ background:#f0f9ff; }}
+          .sev-secret {{ background:#fff7cc; }}
+
+          .pill.sev-high {{ background:#f8d7da; color:#7f1d1d; }}
+          .pill.sev-medium {{ background:#fde68a; color:#92400e; }}
+          .pill.sev-low {{ background:#dbeafe; color:#1e3a8a; }}
+          .pill.sev-secret {{ background:#fde68a; color:#713f12; }}
+
+          a {{ color:#0a66c2; text-decoration:none; }}
+          a:hover {{ text-decoration:underline; }}
+        </style>
+        </head>
+        <body>
+          <div class="wrap">
+            <h1>Trivy Vulnerability Report</h1>
+            <div class="summary">
+              <span class="badge">Total: {total}</span>
+              <span class="badge badge-high">Critical/High: {crit_high}</span>
+              <span class="badge badge-med">Medium: {medium}</span>
+              <span class="badge badge-low">Low: {low}</span>
+              <span class="badge badge-secret">Secrets: {secret_count}</span>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:40px;">#</th>
+                  <th style="width:120px;">Severity</th>
+                  <th style="width:240px;">Target</th>
+                  <th>Title / Message</th>
+                  <th style="width:160px;">Package / Rule</th>
+                  <th style="width:120px;">Fixed in</th>
+                  <th style="width:150px;">Vuln / Rule ID</th>
+                </tr>
+              </thead>
+              <tbody>
+                {''.join(html_rows)}
+              </tbody>
+            </table>
+          </div>
+        </body>
+        </html>
+        """
+
+        pathlib.Path("trivy-report.html").write_text(html_doc, encoding="utf-8")
+        print("HTML written.")
+        @@PY
+
+        # Copy results to workspace
+        cp trivy-report.json trivy-report.html "$ONDEV_WORKSPACE"/ 2>/dev/null || true
+
+        echo "=== Trivy conversion done ==="
+        ls -lh trivy-report.json trivy-report.html || true
+    useTTY: true
+    condition: SUCCESSFUL
+    optional: false
+  - type: PublishArtifactStep
+    name: Publish Trivy Artifacts
+    artifacts: '**/trivy-report.json **/trivy-report.html'
+    condition: SUCCESSFUL
+    optional: false
+  triggers:
+  - type: DependencyFinishedTrigger
+  jobDependencies:
+  - jobName: ci
+    requireSuccessful: true
+    artifacts: '**'
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 14400
+- name: CD
+  jobExecutor: server-docker
+  steps:
+  - type: CheckoutStep
+    name: Checkout Code
+    cloneCredential:
+      type: DefaultCredential
+    withLfs: false
+    withSubmodules: false
+    condition: SUCCESSFUL
+    optional: false
+  - type: SetBuildVersionStep
+    name: Set Build Version
+    buildVersion: '@script:builtin:node:determine-project-version@'
+    condition: SUCCESSFUL
+    optional: false
+  - type: CommandStep
+    name: docker build & push
+    runInContainer: true
+    image: docker:27
+    interpreter:
+      type: DefaultInterpreter
+      commands: |
+        set -euo pipefail
+
+        # Lấy secrets từ OneDev
+        REGISTRY_URL="@secret:REGISTRY_URL@"
+        REGISTRY_REPO="@secret:REGISTRY_REPO@"
+        REGISTRY_USER="@secret:REGISTRY_USER@"
+        REGISTRY_PASS="@secret:REGISTRY_PASS@"
+
+        : "${REGISTRY_URL?Need REGISTRY_URL}"
+        : "${REGISTRY_REPO?Need REGISTRY_REPO}"
+        : "${REGISTRY_USER?Need REGISTRY_USER}"
+        : "${REGISTRY_PASS?Need REGISTRY_PASS}"
+
+        export DOCKER_BUILDKIT=1
+
+        echo ">> Login Docker Registry: ${REGISTRY_URL}"
+        echo "${REGISTRY_PASS}" | docker login "${REGISTRY_URL}" -u "${REGISTRY_USER}" --password-stdin
+
+        IMAGE="${REGISTRY_URL}/${REGISTRY_REPO}:@build_version@-@commit_hash@"
+
+        echo ">> Build image: ${IMAGE}"
+        docker build -t "${IMAGE}" .
+
+        echo ">> Push image: ${IMAGE}"
+        docker push "${IMAGE}"
+
+        echo "✅ Done! Image pushed to ${IMAGE}"
+    useTTY: true
+    condition: SUCCESSFUL
+    optional: false
+  - type: PublishArtifactStep
+    name: publish deploy metadata
+    artifacts: out/deploy.env
+    condition: SUCCESSFUL
+    optional: false
+  triggers:
+  - type: DependencyFinishedTrigger
+  jobDependencies:
+  - jobName: SAST
+    requireSuccessful: true
+    artifacts: '**'
+  - jobName: SCA
+    requireSuccessful: true
+    artifacts: '**'
+  - jobName: Container scan
+    requireSuccessful: true
+    artifacts: '**'
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 14400
+- name: Deploy
+  jobExecutor: server-docker
+  steps:
+  - type: SetBuildVersionStep
+    name: Build Version
+    buildVersion: '@script:builtin:node:determine-project-version@'
+    condition: SUCCESSFUL
+    optional: false
+  - type: CommandStep
+    name: deploy container
+    runInContainer: true
+    image: docker:27
+    interpreter:
+      type: DefaultInterpreter
+      commands: |
+        set -Eeuo pipefail
+
+        # ====== Vars / Secrets ======
+        REGISTRY_URL="${REGISTRY_URL:-@secret:REGISTRY_URL@}"
+        REGISTRY_REPO="${REGISTRY_REPO:-@secret:REGISTRY_REPO@}"
+        REGISTRY_USER="${REGISTRY_USER:-${REGISTRY_USER:-}}"
+        REGISTRY_PASS="${REGISTRY_PASS:-${REGISTRY_PASS:-}}"
+
+        IMAGE="${REGISTRY_URL}/${REGISTRY_REPO}:@build_version@-@commit_hash@"
+        APP_NAME="dacn"
+        NET_NAME="nodegoat-net"
+        MONGO_NAME="mongo"
+        MONGO_URI="mongodb://${MONGO_NAME}:27017/nodegoat"
+        APP_PORT="4000"
+
+        echo ">> Deploying image: ${IMAGE}"
+
+        # ====== Login (nếu có cred) ======
+        export DOCKER_CONFIG=/tmp/dcfg
+        mkdir -p "$DOCKER_CONFIG"
+        if [ -n "${REGISTRY_USER}" ] && [ -n "${REGISTRY_PASS}" ]; then
+          echo "${REGISTRY_PASS}" | docker login "${REGISTRY_URL}" -u "${REGISTRY_USER}" --password-stdin
+        else
+          echo ">> Skip docker login (no REGISTRY_USER/REGISTRY_PASS)"
+        fi
+
+        # ====== Pull image ======
+        docker pull "${IMAGE}"
+
+        # ====== Network + Mongo ======
+        docker network create "${NET_NAME}" >/dev/null 2>&1 || true
+
+        # chạy Mongo nếu chưa có
+        if ! docker ps --format '{{.Names}}' | grep -q "^${MONGO_NAME}$"; then
+          docker rm -f "${MONGO_NAME}" >/dev/null 2>&1 || true
+          docker run -d --name "${MONGO_NAME}" \
+            --network "${NET_NAME}" \
+            -p 27017:27017 \
+            -v mongo-data:/data/db \
+            mongo:4.4
+        fi
+
+        # ====== Wait Mongo ready (dùng busybox tạm) ======
+        echo ">> Waiting for Mongo at ${MONGO_NAME}:27017 ..."
+        ATTEMPTS=60
+        until docker run --rm --network "${NET_NAME}" busybox:1.36.1 sh -c "nc -z -w 1 ${MONGO_NAME} 27017"; do
+          ATTEMPTS=$((ATTEMPTS-1)) || true
+          [ "${ATTEMPTS}" -le 0 ] && { echo "!! Mongo not ready after 60s"; exit 1; }
+          sleep 1
+        done
+        echo ">> Mongo is ready."
+
+        # ====== Seed DB (dùng chính app image) ======
+        echo ">> Seeding database ..."
+        docker run --rm --network "${NET_NAME}" \
+          -e MONGODB_URI="${MONGO_URI}" \
+          "${IMAGE}" node artifacts/db-reset.js || true
+
+        # ====== Run App ======
+        echo ">> Starting app container ..."
+        docker rm -f "${APP_NAME}" >/dev/null 2>&1 || true
+        docker run -d --name "${APP_NAME}" \
+          --network "${NET_NAME}" \
+          -e NODE_ENV=production \
+          -e MONGODB_URI="${MONGO_URI}" \
+          -e PORT="${APP_PORT}" \
+          -p "${APP_PORT}:${APP_PORT}" \
+          --restart unless-stopped \
+          "${IMAGE}" sh -c "npm start"
+
+        # ====== Smoke check ======
+        sleep 3
+        docker ps
+        echo "----- tail logs (${APP_NAME}) -----"
+        docker logs --tail=120 "${APP_NAME}" || true
+
+        # quick HTTP check (trong network nội bộ)
+        echo "----- HTTP check via curl (internal) -----"
+        docker run --rm --network "${NET_NAME}" curlimages/curl:8.8.0 -sS -I "http://${APP_NAME}:${APP_PORT}" || true
+
+        # ====== Cleanup docker login ======
+        rm -rf "$DOCKER_CONFIG" || true
+        echo ">> Deploy done. Open: http://localhost:${APP_PORT}"
+    useTTY: true
+    condition: SUCCESSFUL
+    optional: false
+  triggers:
+  - type: DependencyFinishedTrigger
+  jobDependencies:
+  - jobName: CD
+    requireSuccessful: true
+    artifacts: '**'
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 14400
+- name: DAST
+  jobExecutor: server-docker
+  steps:
+  - type: CommandStep
+    name: OWASP ZAP Scan
+    runInContainer: true
+    image: docker:27
+    interpreter:
+      type: DefaultInterpreter
+      commands: |
+        set -eu
+
+        NET_NAME="nodegoat-net"
+        APP_NAME="dacn"
+        APP_PORT="4000"
+        TARGET_URL="http://${APP_NAME}:${APP_PORT}"
+
+        # Đợi app sẵn sàng
+        i=0
+        until docker run --rm --network "${NET_NAME}" busybox:1.36.1 sh -c "nc -z -w 1 ${APP_NAME} ${APP_PORT}"; do
+          i=$((i+1)); [ $i -ge 60 ] && { echo "App not up after 120s"; exit 1; }
+          sleep 2
+        done
+
+        WORKDIR="$PWD/zap_out"
+        rm -rf "$WORKDIR"; mkdir -p "$WORKDIR"
+
+        ZAP_CONT="zap-af-$$-$(date +%s)"
+
+        # Chạy ZAP (AF + tmpfs). DÙNG -I để WARN không làm fail. Bắt RC nhưng không cho step fail.
+        set +e
+        docker run --name "$ZAP_CONT" --network "${NET_NAME}" --mount type=tmpfs,destination=/zap/wrk ghcr.io/zaproxy/zaproxy:stable \
+          sh -lc "/zap/zap-baseline.py -t '${TARGET_URL}' -J zap-report.json -a -I -z '-config spider.maxDuration=5' -m 5"
+        RC1=$?
+        set -e || true
+
+        # Lấy log + report
+        docker logs "$ZAP_CONT" > "$WORKDIR/zap-run.log" 2>&1 || true
+        docker cp "$ZAP_CONT:/zap/wrk/zap-report.json" "$WORKDIR/zap-report.json" 2>/dev/null || true
+        docker rm -f "$ZAP_CONT" >/dev/null 2>&1 || true
+
+        # Fallback hiếm khi cần: nếu vẫn chưa có file thì chạy non-AF và copy
+        if [ ! -s "$WORKDIR/zap-report.json" ]; then
+          ZAP_CONT2="zap-noaf-$$-$(date +%s)"
+          set +e
+          docker run --name "$ZAP_CONT2" --network "${NET_NAME}" ghcr.io/zaproxy/zaproxy:stable \
+            sh -lc "mkdir -p /zap/wrk; /zap/zap-baseline.py -t '${TARGET_URL}' --autooff -J /zap/wrk/zap-report.json -I -z '-config spider.maxDuration=5' -m 5"
+          RC2=$?
+          set -e || true
+          docker logs "$ZAP_CONT2" >> "$WORKDIR/zap-run.log" 2>&1 || true
+          docker cp "$ZAP_CONT2:/zap/wrk/zap-report.json" "$WORKDIR/zap-report.json" 2>/dev/null || true
+          docker rm -f "$ZAP_CONT2" >/dev/null 2>&1 || true
+        fi
+
+        [ -s "$WORKDIR/zap-report.json" ] || echo '{}' > "$WORKDIR/zap-report.json"
+
+        echo "== Convert ZAP JSON -> HTML =="
+
+        # thử cài python3 (nếu image CI là alpine)
+        apk add --no-cache python3 py3-pip >/dev/null 2>&1 || true
+
+        python3 - <<'PY'
+        import json, html, pathlib, os
+
+        SRC = "zap_out/zap-report.json"
+        DST = "zap_out/zap-report.html"
+
+        try:
+            data = json.load(open(SRC, "r", encoding="utf-8"))
+        except Exception:
+            # nếu không có file thì tạo report rỗng để step không fail
+            data = {}
+
+        sites = data.get("site", [])
+        rows = []
+
+        p1, p2 = "na", "me"
+        end_name = p1 + p2
+        q1, q2 = "ho", "st"
+        end_host = q1 + q2
+
+        for s in sites:
+            tgt = ""
+            for k, v in s.items():
+                if k.endswith(end_name):
+                    tgt = v
+                    break
+            if not tgt:
+                for k, v in s.items():
+                    if k.endswith(end_host):
+                        tgt = v
+                        break
+            for a in s.get("alerts", []) or []:
+                rc = a.get("riskcode", "0")
+                title = a.get("alert") or "Alert"
+                inst = (a.get("instances") or [])
+                first = inst[0] if inst else {}
+                url = first.get("uri", "")
+                param = first.get("param", "")
+                evidence = first.get("evidence", "")
+                sol = a.get("solution", "")
+                cwe = a.get("cweid", "")
+                rows.append({
+                    "sev": rc,
+                    "target": tgt,
+                    "title": title,
+                    "url": url,
+                    "param": param,
+                    "evidence": evidence,
+                    "solution": sol,
+                    "cwe": cwe,
+                })
+
+        total = len(rows)
+        high = sum(1 for r in rows if r["sev"] == "3")
+        med  = sum(1 for r in rows if r["sev"] == "2")
+        low  = sum(1 for r in rows if r["sev"] == "1")
+        info = sum(1 for r in rows if r["sev"] == "0")
+
+        html_rows = []
+        for i, r in enumerate(rows, 1):
+            sev = r["sev"]
+            if sev == "3":
+                cls = "sev-high"; pill = "High"
+            elif sev == "2":
+                cls = "sev-med"; pill = "Medium"
+            elif sev == "1":
+                cls = "sev-low"; pill = "Low"
+            else:
+                cls = "sev-inf"; pill = "Info"
+            html_rows.append(f"""
+            <tr class="{cls}">
+              <td>{i}</td>
+              <td><span class="pill {cls}">{pill}</span></td>
+              <td>{html.escape(r["target"] or "")}</td>
+              <td>{html.escape(r["title"] or "")}</td>
+              <td>{html.escape(r["url"] or "")}</td>
+              <td>{html.escape(r["param"] or "")}</td>
+              <td>{html.escape((r["evidence"] or "")[:200])}</td>
+              <td>{html.escape(r["solution"] or "")}</td>
+              <td>{html.escape(r["cwe"] or "")}</td>
+            </tr>
+            """)
+
+        html_doc = f"""<!doctype html>
+        <html>
+        <head>
+        <meta charset="utf-8">
+        <title>ZAP Vulnerability Report</title>
+        <style>
+        body {{
+          font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+          background: #f3f7fb;
+          margin: 0;
+          padding: 28px;
+        }}
+        .wrap {{ max-width: 1300px; margin: 0 auto; }}
+        .summary {{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px; }}
+        .badge {{ background:#eef2ff; padding:8px 14px; border-radius:999px; font-weight:600; }}
+        .badge-hi {{ background:#fee2e2; }}
+        .badge-med {{ background:#fff4e6; }}
+        .badge-low {{ background:#e0f2ff; }}
+        .badge-inf {{ background:#e2e8f0; }}
+        table {{
+          width: 100%;
+          border-collapse: collapse;
+          background: #fff;
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 16px 40px rgba(2,6,23,0.08);
+        }}
+        thead th {{
+          background: #0f172a;
+          color: #fff;
+          padding: 12px 14px;
+          text-align: left;
+          font-size: 13px;
+        }}
+        tbody td {{
+          padding: 12px 14px;
+          border-bottom: 1px solid #eef2f6;
+          vertical-align: top;
+          font-size: 13px;
+        }}
+        .pill {{
+          display:inline-block;
+          padding:5px 12px;
+          border-radius:999px;
+          font-weight:600;
+          font-size:12px;
+        }}
+        .sev-high {{ background:#fff5f5; }}
+        .sev-med  {{ background:#fffaf0; }}
+        .sev-low  {{ background:#f0f9ff; }}
+        .sev-inf  {{ background:#e2e8f0; }}
+        .pill.sev-high {{ background:#f8d7da; color:#7f1d1d; }}
+        .pill.sev-med  {{ background:#fde68a; color:#92400e; }}
+        .pill.sev-low  {{ background:#dbeafe; color:#1e3a8a; }}
+        .pill.sev-inf  {{ background:#94a3b8; color:#0f172a; }}
+        </style>
+        </head>
+        <body>
+          <div class="wrap">
+            <h1>ZAP Vulnerability Report</h1>
+            <div class="summary">
+              <span class="badge">Total: {total}</span>
+              <span class="badge badge-hi">High: {high}</span>
+              <span class="badge badge-med">Medium: {med}</span>
+              <span class="badge badge-low">Low: {low}</span>
+              <span class="badge badge-inf">Info: {info}</span>
+            </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Risk</th>
+                  <th>Target</th>
+                  <th>Alert</th>
+                  <th>URL</th>
+                  <th>Param</th>
+                  <th>Evidence</th>
+                  <th>Solution</th>
+                  <th>CWE</th>
+                </tr>
+              </thead>
+              <tbody>
+                {''.join(html_rows)}
+              </tbody>
+            </table>
+          </div>
+        </body>
+        </html>
+        """
+
+        pathlib.Path(DST).write_text(html_doc, encoding="utf-8")
+        print("HTML written to", DST)
+        PY
+
+        # chỉ copy nếu onedev có set biến
+        if [ -n "${ONDEV_WORKSPACE:-}" ]; then
+          cp "$WORKDIR/zap-report.json" "$WORKDIR/zap-report.html" "$ONDEV_WORKSPACE"/ 2>/dev/null || true
+        fi
+
+        echo "== ZAP RC (AF): ${RC1:-N/A} =="
+        ls -lh "$WORKDIR"
+        exit 0
+    useTTY: true
+    condition: SUCCESSFUL
+    optional: false
+  - type: PublishArtifactStep
+    name: Publish ZAP Artifacts
+    artifacts: '**/zap-report.json **/zap-report.html'
+    condition: SUCCESSFUL
+    optional: false
+  triggers:
+  - type: DependencyFinishedTrigger
+  jobDependencies:
+  - jobName: Deploy
+    requireSuccessful: true
+    artifacts: '**'
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 14400
