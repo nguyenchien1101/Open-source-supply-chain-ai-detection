@@ -60,11 +60,20 @@ class Finding:
     def as_prompt(self) -> str:
         ctx = self.code_context or "(no code context available)"
         rid = self.rule_id or self.cwe or self.vulnerability
-        return textwrap.dedent(f"""
-        You are a senior AppSec engineer. Analyze the following finding and return a concise remediation plan.
-        Keep answer <= 8 lines. Include a 1–2 line rationale and a short patch or concrete steps.
 
-        Finding:
+        # Nhấn mạnh: đọc ngữ cảnh code + sửa đúng dòng có "=>"
+        return textwrap.dedent(f"""
+        You are a senior application security engineer reviewing a REAL codebase.
+
+        Your task:
+        1) Carefully read the code snippet and understand what the function / route is doing.
+        2) Identify exactly why the flagged line (marked with "=>") is vulnerable in THIS context
+           (consider framework, parameters, data flow, and user input in the surrounding lines).
+        3) Propose a CONCRETE fix that can be applied directly to this file: rewrite the vulnerable
+           line and any closely related lines (validation, parsing, encoding, etc.).
+        4) Keep the change as small and safe as possible (minimal patch).
+
+        Finding metadata:
         - Tool: {self.tool}
         - File: {self.file}
         - Line: {self.line}
@@ -73,10 +82,32 @@ class Finding:
         - Title: {self.vulnerability}
         - Original Description: {self.description}
 
-        Relevant Code Context (with line numbers, '=>' marks the flagged line):
+        Relevant code snippet (with line numbers, "=>" marks the vulnerable line):
         {ctx}
 
-        Return JSON with keys: rationale, fix_suggestion, patch (optional), references (array).
+        IMPORTANT:
+        - Use the actual variable names and APIs from the snippet (for example: Express route
+          handlers, request/response objects, template engines, database clients, etc.).
+        - If the issue is unsafe eval / concatenated query / missing validation, show how to rewrite
+          THAT exact line to a safe pattern (e.g. JSON.parse, parameterized query, whitelist, etc.).
+        - The patch should look like real production code, not pseudocode.
+
+        Respond ONLY with valid JSON.
+        DO NOT include ```json, ```markdown, or any text outside the JSON.
+        The ENTIRE response must be a single JSON object. No explanations, no markdown.
+
+        Return JSON with EXACTLY this structure:
+        {{
+          "rationale": "<1–3 lines explaining the risk in this specific function>",
+          "fix_suggestion": "<2–4 lines describing the change, referring to real variable/function names>",
+          "patch": {{
+              "before": "<copy the exact vulnerable line as shown in the snippet>",
+              "after": "<rewrite the exact line and related lines in a safe form>"
+          }},
+          "references": ["<link-1>", "<link-2>"]
+        }}
+
+        Now output the JSON ONLY:
         """)
 
 # ----------------------------- Parsers ---------------------------------------
@@ -335,7 +366,9 @@ def write_html(unified: List[Dict[str, Any]], out_path: pathlib.Path):
     for idx, it in enumerate(unified, start=1):
         sev_raw = (it.get("Severity") or "unknown")
         sev = sev_raw.lower()
-        tool = (it.get("Tool") or "").upper()
+        tool_raw = (it.get("Tool") or "")
+        tool = tool_raw.upper()
+        tool_lower = tool_raw.lower()
 
         # location
         if it.get("File"):
@@ -366,7 +399,7 @@ def write_html(unified: List[Dict[str, Any]], out_path: pathlib.Path):
 
         cards_html.append(
             f"""
-      <div class="timeline-item">
+      <div class="timeline-item" data-tool="{esc(tool_lower)}">
         <div class="timeline-rail">
           <div class="timeline-dot sev-{esc(sev)}"></div>
           <div class="timeline-line"></div>
@@ -408,7 +441,7 @@ def write_html(unified: List[Dict[str, Any]], out_path: pathlib.Path):
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Unified AI Remediation Report</title>
+<title>AI Remediation Report</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -474,6 +507,36 @@ def write_html(unified: List[Dict[str, Any]], out_path: pathlib.Path):
     color: #374151;
   }}
   .chip span {{
+    font-weight: 600;
+  }}
+
+  /* Filter bar */
+  .filter-bar {{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 6px 0 16px;
+    flex-wrap: wrap;
+  }}
+  .filter-bar-label {{
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }}
+  .filter-btn {{
+    border-radius: 999px;
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+    padding: 4px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    color: #374151;
+  }}
+  .filter-btn.active {{
+    background: #eef2ff;
+    border-color: #6366f1;
+    color: #4338ca;
     font-weight: 600;
   }}
 
@@ -703,13 +766,21 @@ def write_html(unified: List[Dict[str, Any]], out_path: pathlib.Path):
   <div class="container">
     <div class="shell">
       <header>
-        <h1>Unified AI Remediation Report</h1>
+        <h1>AI Remediation Report</h1>
         <div class="meta-row">
           <span>Generated at <code>{esc(generated_at)}</code></span>
           <span class="chip"><span>{total}</span> findings</span>
           <span class="chip">By severity: {esc(sev_summary_txt)}</span>
         </div>
       </header>
+
+      <div class="filter-bar">
+        <span class="filter-bar-label">Filter by tool</span>
+        <button class="filter-btn active" data-filter-tool="all">All</button>
+        <button class="filter-btn" data-filter-tool="semgrep">Semgrep</button>
+        <button class="filter-btn" data-filter-tool="trivy">Trivy</button>
+        <button class="filter-btn" data-filter-tool="snyk">Snyk</button>
+      </div>
 
       <section class="summary-grid">
         <div class="summary-block">
@@ -741,11 +812,37 @@ def write_html(unified: List[Dict[str, Any]], out_path: pathlib.Path):
       </section>
     </div>
   </div>
+
+<script>
+  (function() {{
+    const buttons = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.timeline-item');
+
+    function applyFilter(filter) {{
+      items.forEach(item => {{
+        const tool = item.getAttribute('data-tool') || '';
+        if (filter === 'all' || tool === filter) {{
+          item.style.display = '';
+        }} else {{
+          item.style.display = 'none';
+        }}
+      }});
+    }}
+
+    buttons.forEach(btn => {{
+      btn.addEventListener('click', () => {{
+        const filter = btn.getAttribute('data-filter-tool');
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyFilter(filter);
+      }});
+    }});
+  }})();
+</script>
 </body>
 </html>
 """
     out_path.write_text(html_doc, encoding="utf-8")
-
 
 
 
@@ -768,28 +865,45 @@ def run(args) -> Tuple[List[Dict[str, Any]], int]:
     if not findings:
         return [], 0
 
-    # ⭐ CHỈ GỬI 10 FINDINGS ĐẦU TIÊN LÊN GEMINI (thường là critical/high trước vì collect_findings đã sort)
-    LIMIT = 10
-    total = len(findings)
-    if total > LIMIT:
-        print(f"[INFO] Parsed {total} findings, only sending top {LIMIT} to Gemini for AI remediation.")
-        findings_for_ai = findings[:LIMIT]
-    else:
-        print(f"[INFO] Parsed {total} findings, sending all to Gemini.")
-        findings_for_ai = findings
+    # ƯU TIÊN SEMGREP → chỉ gửi các bug Semgrep lên Gemini
+    semgrep_only = [f for f in findings if f.tool == "semgrep"]
 
+    LIMIT = 10
+
+    if semgrep_only:
+        total = len(findings)          # tổng tất cả findings để report
+        send_list = semgrep_only[:LIMIT]   # chỉ Semgrep gửi lên LLM
+        print(
+            f"[INFO] Parsed {total} findings "
+            f"({len(semgrep_only)} from Semgrep). "
+            f"Sending {len(send_list)} Semgrep findings to Gemini."
+        )
+    else:
+        # fallback: không có Semgrep → dùng behavior cũ (top N theo severity)
+        total = len(findings)
+        if total > LIMIT:
+            print(
+                f"[INFO] Parsed {total} findings, "
+                f"no Semgrep found → sending top {LIMIT} to Gemini."
+            )
+            send_list = findings[:LIMIT]
+        else:
+            print(f"[INFO] Parsed {total} findings, sending all to Gemini.")
+            send_list = findings
+
+    # Gắn code context: chỉ cần cho những finding gửi lên LLM
     if args.repo_root:
-        attach_code_context(findings_for_ai, args.repo_root, before=args.before, after=args.after)
+        attach_code_context(send_list, args.repo_root, before=args.before, after=args.after)
 
     def task(f: Finding) -> Tuple[Finding, str]:
         return f, call_gemini(f.as_prompt(), model=args.model)
 
     pairs: List[Tuple[Finding, str]] = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.max_workers) as ex:
-        for res in ex.map(task, findings_for_ai):
+        for res in ex.map(task, send_list):
             pairs.append(res)
 
-    # Map kết quả AI theo (tool,file,line) để đổ lại vào full danh sách
+    # Map AI result lại vào toàn bộ danh sách findings
     ai_map: Dict[Tuple[str, Optional[str], Optional[int]], str] = {}
     for f, ai in pairs:
         key = (f.tool, f.file, f.line)
@@ -804,6 +918,7 @@ def run(args) -> Tuple[List[Dict[str, Any]], int]:
     return unified, total
 
 
+
 # ---------------------------------- CLI --------------------------------------
 
 def main() -> int:
@@ -815,8 +930,8 @@ def main() -> int:
     ap.add_argument("--before", type=int, default=10, help="Lines of context before")
     ap.add_argument("--after",  type=int, default=10, help="Lines of context after")
     ap.add_argument("--model",  type=str, default=None, help="Gemini model (default: gemini-1.5-pro)")
-    ap.add_argument("--out-json", type=pathlib.Path, default=pathlib.Path("unified_ai_report.json"))
-    ap.add_argument("--out-html", type=pathlib.Path, default=pathlib.Path("unified_ai_report.html"))
+    ap.add_argument("--out-json", type=pathlib.Path, default=pathlib.Path("ai_report.json"))
+    ap.add_argument("--out-html", type=pathlib.Path, default=pathlib.Path("ai_report.html"))
     ap.add_argument("--max-workers", type=int, default=4)
     args = ap.parse_args()
 

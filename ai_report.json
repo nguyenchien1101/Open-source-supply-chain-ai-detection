@@ -1,5 +1,5 @@
 {
-  "generated_at": "2025-11-25T18:29:11.346665Z",
+  "generated_at": "2025-11-28T19:59:06.578734Z",
   "findings": [
     {
       "Tool": "trivy",
@@ -13,7 +13,7 @@
       "InstalledVersion": "1.2.12-r0",
       "FixedVersion": "1.2.12-r2",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The Alpine 3.15.4 base image contains a vulnerable version of zlib (<= 1.2.12) that can lead to heap-based buffer overflows. This vulnerability is critical and affects applications that use inflateGetHeader.\",\n  \"fix_suggestion\": \"Update the Alpine base image to a version with zlib patched or updated. Alternatively, if the application explicitly links to zlib, update the zlib library to 1.2.13 or later.\",\n  \"patch\": \"Rebuild the Docker image using a newer Alpine base image (e.g., Alpine 3.18 or later) or update the zlib package within the existing image if direct dependency management allows.\",\n  \"references\": [\n    \"https://nvd.nist.gov/vuln/detail/CVE-2022-4506\",\n    \"https://github.com/zlib-ng/zlib-ng/issues/727\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -29,7 +29,7 @@
       "InstalledVersion": "1.0.9",
       "FixedVersion": "1.1.4",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -45,7 +45,7 @@
       "InstalledVersion": "2.3.2",
       "FixedVersion": "2.5.4, 3.0.4, 4.0.4",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -61,7 +61,7 @@
       "InstalledVersion": "0.0.10",
       "FixedVersion": "1.2.6, 0.2.4",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -77,7 +77,7 @@
       "InstalledVersion": "0.0.8",
       "FixedVersion": "1.2.6, 0.2.4",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -93,7 +93,7 @@
       "InstalledVersion": "1.2.5",
       "FixedVersion": "1.2.6, 0.2.4",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -109,7 +109,7 @@
       "InstalledVersion": "1.2.5",
       "FixedVersion": "1.2.6, 0.2.4",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -125,7 +125,7 @@
       "InstalledVersion": "1.2.5",
       "FixedVersion": "1.2.6, 0.2.4",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -141,7 +141,7 @@
       "InstalledVersion": "1.3.1",
       "FixedVersion": "1.3.2, 2.0.1",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -157,7 +157,7 @@
       "InstalledVersion": "0.4.3",
       "FixedVersion": "2.0.1, 3.0.1",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -173,7 +173,7 @@
       "InstalledVersion": "2.0.0",
       "FixedVersion": "2.0.1, 3.0.1",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -189,7 +189,7 @@
       "InstalledVersion": "1.9.1",
       "FixedVersion": "1.12.1",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2013,7 +2013,7 @@
       "InstalledVersion": "1.1.1n-r0",
       "FixedVersion": "1.1.1t-r0",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The Alpine 3.15.4 base image contains a vulnerable version of zlib (<= 1.2.12) that can lead to heap-based buffer overflows. This vulnerability is critical and affects applications that use inflateGetHeader.\",\n  \"fix_suggestion\": \"Update the Alpine base image to a version with zlib patched or updated. Alternatively, if the application explicitly links to zlib, update the zlib library to 1.2.13 or later.\",\n  \"patch\": \"Rebuild the Docker image using a newer Alpine base image (e.g., Alpine 3.18 or later) or update the zlib package within the existing image if direct dependency management allows.\",\n  \"references\": [\n    \"https://nvd.nist.gov/vuln/detail/CVE-2022-4506\",\n    \"https://github.com/zlib-ng/zlib-ng/issues/727\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2029,7 +2029,7 @@
       "InstalledVersion": "1.1.1n-r0",
       "FixedVersion": "1.1.1t-r0",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The Alpine 3.15.4 base image contains a vulnerable version of zlib (<= 1.2.12) that can lead to heap-based buffer overflows. This vulnerability is critical and affects applications that use inflateGetHeader.\",\n  \"fix_suggestion\": \"Update the Alpine base image to a version with zlib patched or updated. Alternatively, if the application explicitly links to zlib, update the zlib library to 1.2.13 or later.\",\n  \"patch\": \"Rebuild the Docker image using a newer Alpine base image (e.g., Alpine 3.18 or later) or update the zlib package within the existing image if direct dependency management allows.\",\n  \"references\": [\n    \"https://nvd.nist.gov/vuln/detail/CVE-2022-4506\",\n    \"https://github.com/zlib-ng/zlib-ng/issues/727\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2045,7 +2045,7 @@
       "InstalledVersion": "1.1.1n-r0",
       "FixedVersion": "1.1.1t-r0",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The Alpine 3.15.4 base image contains a vulnerable version of zlib (<= 1.2.12) that can lead to heap-based buffer overflows. This vulnerability is critical and affects applications that use inflateGetHeader.\",\n  \"fix_suggestion\": \"Update the Alpine base image to a version with zlib patched or updated. Alternatively, if the application explicitly links to zlib, update the zlib library to 1.2.13 or later.\",\n  \"patch\": \"Rebuild the Docker image using a newer Alpine base image (e.g., Alpine 3.18 or later) or update the zlib package within the existing image if direct dependency management allows.\",\n  \"references\": [\n    \"https://nvd.nist.gov/vuln/detail/CVE-2022-4506\",\n    \"https://github.com/zlib-ng/zlib-ng/issues/727\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2061,7 +2061,7 @@
       "InstalledVersion": "1.1.1n-r0",
       "FixedVersion": "1.1.1t-r2",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The Alpine 3.15.4 base image contains a vulnerable version of zlib (<= 1.2.12) that can lead to heap-based buffer overflows. This vulnerability is critical and affects applications that use inflateGetHeader.\",\n  \"fix_suggestion\": \"Update the Alpine base image to a version with zlib patched or updated. Alternatively, if the application explicitly links to zlib, update the zlib library to 1.2.13 or later.\",\n  \"patch\": \"Rebuild the Docker image using a newer Alpine base image (e.g., Alpine 3.18 or later) or update the zlib package within the existing image if direct dependency management allows.\",\n  \"references\": [\n    \"https://nvd.nist.gov/vuln/detail/CVE-2022-4506\",\n    \"https://github.com/zlib-ng/zlib-ng/issues/727\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2077,7 +2077,7 @@
       "InstalledVersion": "1.1.1n-r0",
       "FixedVersion": "1.1.1t-r0",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The Alpine 3.15.4 base image contains a vulnerable version of zlib (<= 1.2.12) that can lead to heap-based buffer overflows. This vulnerability is critical and affects applications that use inflateGetHeader.\",\n  \"fix_suggestion\": \"Update the Alpine base image to a version with zlib patched or updated. Alternatively, if the application explicitly links to zlib, update the zlib library to 1.2.13 or later.\",\n  \"patch\": \"Rebuild the Docker image using a newer Alpine base image (e.g., Alpine 3.18 or later) or update the zlib package within the existing image if direct dependency management allows.\",\n  \"references\": [\n    \"https://nvd.nist.gov/vuln/detail/CVE-2022-4506\",\n    \"https://github.com/zlib-ng/zlib-ng/issues/727\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2093,7 +2093,7 @@
       "InstalledVersion": "1.1.1n-r0",
       "FixedVersion": "1.1.1t-r0",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The Alpine 3.15.4 base image contains a vulnerable version of zlib (<= 1.2.12) that can lead to heap-based buffer overflows. This vulnerability is critical and affects applications that use inflateGetHeader.\",\n  \"fix_suggestion\": \"Update the Alpine base image to a version with zlib patched or updated. Alternatively, if the application explicitly links to zlib, update the zlib library to 1.2.13 or later.\",\n  \"patch\": \"Rebuild the Docker image using a newer Alpine base image (e.g., Alpine 3.18 or later) or update the zlib package within the existing image if direct dependency management allows.\",\n  \"references\": [\n    \"https://nvd.nist.gov/vuln/detail/CVE-2022-4506\",\n    \"https://github.com/zlib-ng/zlib-ng/issues/727\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2109,7 +2109,7 @@
       "InstalledVersion": "1.1.1n-r0",
       "FixedVersion": "1.1.1t-r0",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The Alpine 3.15.4 base image contains a vulnerable version of zlib (<= 1.2.12) that can lead to heap-based buffer overflows. This vulnerability is critical and affects applications that use inflateGetHeader.\",\n  \"fix_suggestion\": \"Update the Alpine base image to a version with zlib patched or updated. Alternatively, if the application explicitly links to zlib, update the zlib library to 1.2.13 or later.\",\n  \"patch\": \"Rebuild the Docker image using a newer Alpine base image (e.g., Alpine 3.18 or later) or update the zlib package within the existing image if direct dependency management allows.\",\n  \"references\": [\n    \"https://nvd.nist.gov/vuln/detail/CVE-2022-4506\",\n    \"https://github.com/zlib-ng/zlib-ng/issues/727\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2125,7 +2125,7 @@
       "InstalledVersion": "1.1.1n-r0",
       "FixedVersion": "1.1.1t-r2",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The Alpine 3.15.4 base image contains a vulnerable version of zlib (<= 1.2.12) that can lead to heap-based buffer overflows. This vulnerability is critical and affects applications that use inflateGetHeader.\",\n  \"fix_suggestion\": \"Update the Alpine base image to a version with zlib patched or updated. Alternatively, if the application explicitly links to zlib, update the zlib library to 1.2.13 or later.\",\n  \"patch\": \"Rebuild the Docker image using a newer Alpine base image (e.g., Alpine 3.18 or later) or update the zlib package within the existing image if direct dependency management allows.\",\n  \"references\": [\n    \"https://nvd.nist.gov/vuln/detail/CVE-2022-4506\",\n    \"https://github.com/zlib-ng/zlib-ng/issues/727\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2141,7 +2141,7 @@
       "InstalledVersion": "3.0.0",
       "FixedVersion": "6.0.1, 5.0.1, 4.1.1, 3.0.1",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2157,7 +2157,7 @@
       "InstalledVersion": "4.1.0",
       "FixedVersion": "6.0.1, 5.0.1, 4.1.1, 3.0.1",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2173,7 +2173,7 @@
       "InstalledVersion": "4.1.0",
       "FixedVersion": "6.0.1, 5.0.1, 4.1.1, 3.0.1",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2189,7 +2189,7 @@
       "InstalledVersion": "4.1.0",
       "FixedVersion": "6.0.1, 5.0.1, 4.1.1, 3.0.1",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2205,7 +2205,7 @@
       "InstalledVersion": "1.18.3",
       "FixedVersion": "1.20.3",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2221,7 +2221,7 @@
       "InstalledVersion": "2.3.2",
       "FixedVersion": "3.0.3",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2237,7 +2237,7 @@
       "InstalledVersion": "5.1.0",
       "FixedVersion": "7.0.5, 6.0.6",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2253,7 +2253,7 @@
       "InstalledVersion": "2.2.0",
       "FixedVersion": "3.1.0, 2.6.9",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2269,7 +2269,7 @@
       "InstalledVersion": "0.2.0",
       "FixedVersion": "0.2.1",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2285,7 +2285,7 @@
       "InstalledVersion": "0.2.0",
       "FixedVersion": "0.2.1",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2301,7 +2301,7 @@
       "InstalledVersion": "3.8.1",
       "FixedVersion": "4.1.1",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2317,7 +2317,7 @@
       "InstalledVersion": "0.3.6",
       "FixedVersion": "0.3.7",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2333,7 +2333,7 @@
       "InstalledVersion": "1.3.5",
       "FixedVersion": "1.3.6",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2349,7 +2349,7 @@
       "InstalledVersion": "1.1.5",
       "FixedVersion": null,
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2365,7 +2365,7 @@
       "InstalledVersion": "6.0.2",
       "FixedVersion": "6.0.3",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2381,7 +2381,7 @@
       "InstalledVersion": "6.0.2",
       "FixedVersion": "6.0.3",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2397,7 +2397,7 @@
       "InstalledVersion": "6.0.2",
       "FixedVersion": "6.0.3",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2413,7 +2413,7 @@
       "InstalledVersion": "6.0.2",
       "FixedVersion": "6.0.3",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2429,7 +2429,7 @@
       "InstalledVersion": "6.0.2",
       "FixedVersion": "6.0.3",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2445,7 +2445,7 @@
       "InstalledVersion": "6.0.2",
       "FixedVersion": "6.0.3",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2461,7 +2461,7 @@
       "InstalledVersion": "0.3.5",
       "FixedVersion": "0.3.9",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2477,7 +2477,7 @@
       "InstalledVersion": "0.3.5",
       "FixedVersion": "4.0.10",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2493,7 +2493,7 @@
       "InstalledVersion": "0.3.5",
       "FixedVersion": "4.0.10",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2509,7 +2509,7 @@
       "InstalledVersion": "3.0.4",
       "FixedVersion": "3.0.5",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2525,7 +2525,7 @@
       "InstalledVersion": "3.0.4",
       "FixedVersion": "3.0.5",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2541,7 +2541,7 @@
       "InstalledVersion": "2.2.36",
       "FixedVersion": "3.1.13",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2557,7 +2557,7 @@
       "InstalledVersion": "0.10.0",
       "FixedVersion": "0.11.4",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2573,7 +2573,7 @@
       "InstalledVersion": "0.6.9",
       "FixedVersion": "0.11.4",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2589,7 +2589,7 @@
       "InstalledVersion": "0.1.7",
       "FixedVersion": "1.9.0, 0.1.10, 8.0.0, 3.3.0, 6.3.0",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2605,7 +2605,7 @@
       "InstalledVersion": "0.1.7",
       "FixedVersion": "0.1.12",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2621,7 +2621,7 @@
       "InstalledVersion": "6.5.2",
       "FixedVersion": "6.10.3, 6.9.7, 6.8.3, 6.7.3, 6.6.1, 6.5.3, 6.4.1, 6.3.3, 6.2.4",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2637,7 +2637,7 @@
       "InstalledVersion": "6.5.2",
       "FixedVersion": "6.10.3, 6.9.7, 6.8.3, 6.7.3, 6.6.1, 6.5.3, 6.4.1, 6.3.3, 6.2.4",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2653,7 +2653,7 @@
       "InstalledVersion": "5.6.0",
       "FixedVersion": "7.5.2, 6.3.1, 5.7.2",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2669,7 +2669,7 @@
       "InstalledVersion": "5.7.1",
       "FixedVersion": "7.5.2, 6.3.1, 5.7.2",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2685,7 +2685,7 @@
       "InstalledVersion": "0.4.3",
       "FixedVersion": "4.0.1, 2.0.1, 3.0.3",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2701,7 +2701,7 @@
       "InstalledVersion": "2.0.0",
       "FixedVersion": "4.0.1, 2.0.1, 3.0.3",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2717,7 +2717,7 @@
       "InstalledVersion": "1.4.2",
       "FixedVersion": null,
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -2733,7 +2733,7 @@
       "InstalledVersion": "3.2.1",
       "FixedVersion": "3.2.2, 4.0.1, 5.0.5",
       "AI Remediation": {
-        "ai_text": "```json\n{\n  \"rationale\": \"The `set-value` package, used in the Node.js application, has a critical prototype pollution vulnerability in versions prior to 3.0.1. This can be exploited to inject malicious code or alter application behavior.\",\n  \"fix_suggestion\": \"Update the `set-value` dependency to the latest version (>= 3.0.1) to patch the prototype pollution vulnerability.\",\n  \"patch\": \"Modify your `package.json` to specify `\\\"set-value\\\": \\\">=3.0.1\\\"` and run `npm install` or `yarn install`.\",\n  \"references\": [\n    \"https://security.snyk.io/vuln/SNYK-JS-SETVALUE-1018907\",\n    \"https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7656\"\n  ]\n}\n```"
+        "ai_text": "AI remediation skipped (quota saving)."
       },
       "CodeContext": null
     },
@@ -5773,9 +5773,9 @@
       "InstalledVersion": null,
       "FixedVersion": null,
       "AI Remediation": {
-        "ai_text": "AI remediation skipped (quota saving)."
+        "ai_text": "```json\n{\n  \"rationale\": \"The flagged line initializes the Express application but is part of a larger pattern indicating the absence of Cross-Site Request Forgery (CSRF) protection middleware. This makes the application vulnerable to CSRF attacks, where an attacker tricks a user into performing an unwanted action on a web application they are authenticated to.\",\n  \"fix_suggestion\": \"The application needs to include and configure CSRF protection middleware. This involves uncommenting and potentially configuring the `csurf` or `csrf` middleware. The `session` middleware (already included) is a prerequisite for `csurf`.\",\n  \"patch\": {\n    \"before\": \"const app = express(); // Web framework to handle routing requests\",\n    \"after\": \"const csrf = require('csurf');\\nconst app = express(); // Web framework to handle routing requests\\napp.use(session({ secret: cookieSecret, resave: false, saveUninitialized: false }));\\napp.use(csrf());\"\n  },\n  \"references\": [\n    \"https://expressjs.com/en/advanced/best-practice-security.html#use-csurf\"\n  ]\n}\n```"
       },
-      "CodeContext": null
+      "CodeContext": "        1 | \"use strict\";\n        2 | \n        3 | const express = require(\"express\");\n        4 | const favicon = require(\"serve-favicon\");\n        5 | const bodyParser = require(\"body-parser\");\n        6 | const session = require(\"express-session\");\n        7 | // const csrf = require('csurf');\n        8 | const consolidate = require(\"consolidate\"); // Templating library adapter for Express\n        9 | const swig = require(\"swig\");\n       10 | // const helmet = require(\"helmet\");\n       11 | const MongoClient = require(\"mongodb\").MongoClient; // Driver for connecting to MongoDB\n       12 | const http = require(\"http\");\n       13 | const marked = require(\"marked\");\n       14 | //const nosniff = require('dont-sniff-mimetype');\n=>     15 | const app = express(); // Web framework to handle routing requests\n       16 | const routes = require(\"./app/routes\");\n       17 | const { port, db, cookieSecret } = require(\"./config/config\"); // Application config properties\n       18 | /*\n       19 | // Fix for A6-Sensitive Data Exposure\n       20 | // Load keys for establishing secure HTTPS connection\n       21 | const fs = require(\"fs\");\n       22 | const https = require(\"https\");\n       23 | const path = require(\"path\");\n       24 | const httpsOptions = {\n       25 |     key: fs.readFileSync(path.resolve(__dirname, \"./artifacts/cert/server.key\")),\n       26 |     cert: fs.readFileSync(path.resolve(__dirname, \"./artifacts/cert/server.crt\"))\n       27 | };\n       28 | */\n       29 | \n       30 | MongoClient.connect(db, (err, db) => {\n       31 |     if (err) {\n       32 |         console.log(\"Error: DB: connect\");\n       33 |         console.log(err);\n       34 |         process.exit(1);\n       35 |     }"
     },
     {
       "Tool": "semgrep",
@@ -5789,9 +5789,9 @@
       "InstalledVersion": null,
       "FixedVersion": null,
       "AI Remediation": {
-        "ai_text": "AI remediation skipped (quota saving)."
+        "ai_text": "```json\n{\n  \"rationale\": \"The `eval()` function is used here to parse user-supplied input from `req.body.preTax`. This is highly dangerous as it allows arbitrary JavaScript code execution if an attacker can control the input.\",\n  \"fix_suggestion\": \"Replace `eval()` with `parseFloat()` to safely parse the string input as a floating-point number. Ensure the input is a valid number and within acceptable ranges.\",\n  \"patch\": {\n    \"before\": \"const preTax = eval(req.body.preTax);\",\n    \"after\": \"const preTax = parseFloat(req.body.preTax);\\n        const afterTax = parseFloat(req.body.afterTax);\\n        const roth = parseFloat(req.body.roth);\"\n  },\n  \"references\": [\n    \"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval\",\n    \"https://owasp.org/www-community/attacks/Server-side_JavaScript_injection\"\n  ]\n}\n```"
       },
-      "CodeContext": null
+      "CodeContext": "       12 |     this.displayContributions = (req, res, next) => {\n       13 |         const {\n       14 |             userId\n       15 |         } = req.session;\n       16 | \n       17 |         contributionsDAO.getByUserId(userId, (error, contrib) => {\n       18 |             if (error) return next(error);\n       19 | \n       20 |             contrib.userId = userId; //set for nav menu items\n       21 |             return res.render(\"contributions\", {\n       22 |                 ...contrib,\n       23 |                 environmentalScripts\n       24 |             });\n       25 |         });\n       26 |     };\n       27 | \n       28 |     this.handleContributionsUpdate = (req, res, next) => {\n       29 | \n       30 |         /*jslint evil: true */\n       31 |         // Insecure use of eval() to parse inputs\n=>     32 |         const preTax = eval(req.body.preTax);\n       33 |         const afterTax = eval(req.body.afterTax);\n       34 |         const roth = eval(req.body.roth);\n       35 | \n       36 |         /*\n       37 |         //Fix for A1 -1 SSJS Injection attacks - uses alternate method to eval\n       38 |         const preTax = parseInt(req.body.preTax);\n       39 |         const afterTax = parseInt(req.body.afterTax);\n       40 |         const roth = parseInt(req.body.roth);\n       41 |         */\n       42 |         const {\n       43 |             userId\n       44 |         } = req.session;\n       45 | \n       46 |         //validate contributions\n       47 |         const validations = [isNaN(preTax), isNaN(afterTax), isNaN(roth), preTax < 0, afterTax < 0, roth < 0];\n       48 |         const isInvalid = validations.some(validation => validation);\n       49 |         if (isInvalid) {\n       50 |             return res.render(\"contributions\", {\n       51 |                 updateError: \"Invalid contribution percentages\",\n       52 |                 userId,"
     },
     {
       "Tool": "semgrep",
@@ -5805,9 +5805,9 @@
       "InstalledVersion": null,
       "FixedVersion": null,
       "AI Remediation": {
-        "ai_text": "AI remediation skipped (quota saving)."
+        "ai_text": "```json\n{\n  \"rationale\": \"The `eval()` function is used here to parse user-supplied input from `req.body.preTax`. This is highly dangerous as it allows arbitrary JavaScript code execution if an attacker can control the input.\",\n  \"fix_suggestion\": \"Replace `eval()` with `parseFloat()` to safely parse the string input as a floating-point number. Ensure the input is a valid number and within acceptable ranges.\",\n  \"patch\": {\n    \"before\": \"const preTax = eval(req.body.preTax);\",\n    \"after\": \"const preTax = parseFloat(req.body.preTax);\\n        const afterTax = parseFloat(req.body.afterTax);\\n        const roth = parseFloat(req.body.roth);\"\n  },\n  \"references\": [\n    \"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval\",\n    \"https://owasp.org/www-community/attacks/Server-side_JavaScript_injection\"\n  ]\n}\n```"
       },
-      "CodeContext": null
+      "CodeContext": "       12 |     this.displayContributions = (req, res, next) => {\n       13 |         const {\n       14 |             userId\n       15 |         } = req.session;\n       16 | \n       17 |         contributionsDAO.getByUserId(userId, (error, contrib) => {\n       18 |             if (error) return next(error);\n       19 | \n       20 |             contrib.userId = userId; //set for nav menu items\n       21 |             return res.render(\"contributions\", {\n       22 |                 ...contrib,\n       23 |                 environmentalScripts\n       24 |             });\n       25 |         });\n       26 |     };\n       27 | \n       28 |     this.handleContributionsUpdate = (req, res, next) => {\n       29 | \n       30 |         /*jslint evil: true */\n       31 |         // Insecure use of eval() to parse inputs\n=>     32 |         const preTax = eval(req.body.preTax);\n       33 |         const afterTax = eval(req.body.afterTax);\n       34 |         const roth = eval(req.body.roth);\n       35 | \n       36 |         /*\n       37 |         //Fix for A1 -1 SSJS Injection attacks - uses alternate method to eval\n       38 |         const preTax = parseInt(req.body.preTax);\n       39 |         const afterTax = parseInt(req.body.afterTax);\n       40 |         const roth = parseInt(req.body.roth);\n       41 |         */\n       42 |         const {\n       43 |             userId\n       44 |         } = req.session;\n       45 | \n       46 |         //validate contributions\n       47 |         const validations = [isNaN(preTax), isNaN(afterTax), isNaN(roth), preTax < 0, afterTax < 0, roth < 0];\n       48 |         const isInvalid = validations.some(validation => validation);\n       49 |         if (isInvalid) {\n       50 |             return res.render(\"contributions\", {\n       51 |                 updateError: \"Invalid contribution percentages\",\n       52 |                 userId,"
     },
     {
       "Tool": "semgrep",
@@ -5821,9 +5821,9 @@
       "InstalledVersion": null,
       "FixedVersion": null,
       "AI Remediation": {
-        "ai_text": "AI remediation skipped (quota saving)."
+        "ai_text": "```json\n{\n  \"rationale\": \"The `eval()` function is used to parse `req.body.afterTax`. Since `req.body` originates from user input, this can lead to arbitrary code execution if a malicious user provides specially crafted input for `afterTax`.\",\n  \"fix_suggestion\": \"Replace `eval()` with `parseFloat()` to safely convert the user-provided string to a floating-point number. Ensure this is done for all three `eval` calls (`preTax`, `afterTax`, `roth`).\",\n  \"patch\": {\n    \"before\": \"        const afterTax = eval(req.body.afterTax);\",\n    \"after\": \"        const preTax = parseFloat(req.body.preTax);\\n        const afterTax = parseFloat(req.body.afterTax);\\n        const roth = parseFloat(req.body.roth);\"\n  },\n  \"references\": [\n    \"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval\",\n    \"https://owasp.org/www-community/attacks/Javascript_Obfuscation\"\n  ]\n}\n```"
       },
-      "CodeContext": null
+      "CodeContext": "       13 |         const {\n       14 |             userId\n       15 |         } = req.session;\n       16 | \n       17 |         contributionsDAO.getByUserId(userId, (error, contrib) => {\n       18 |             if (error) return next(error);\n       19 | \n       20 |             contrib.userId = userId; //set for nav menu items\n       21 |             return res.render(\"contributions\", {\n       22 |                 ...contrib,\n       23 |                 environmentalScripts\n       24 |             });\n       25 |         });\n       26 |     };\n       27 | \n       28 |     this.handleContributionsUpdate = (req, res, next) => {\n       29 | \n       30 |         /*jslint evil: true */\n       31 |         // Insecure use of eval() to parse inputs\n       32 |         const preTax = eval(req.body.preTax);\n=>     33 |         const afterTax = eval(req.body.afterTax);\n       34 |         const roth = eval(req.body.roth);\n       35 | \n       36 |         /*\n       37 |         //Fix for A1 -1 SSJS Injection attacks - uses alternate method to eval\n       38 |         const preTax = parseInt(req.body.preTax);\n       39 |         const afterTax = parseInt(req.body.afterTax);\n       40 |         const roth = parseInt(req.body.roth);\n       41 |         */\n       42 |         const {\n       43 |             userId\n       44 |         } = req.session;\n       45 | \n       46 |         //validate contributions\n       47 |         const validations = [isNaN(preTax), isNaN(afterTax), isNaN(roth), preTax < 0, afterTax < 0, roth < 0];\n       48 |         const isInvalid = validations.some(validation => validation);\n       49 |         if (isInvalid) {\n       50 |             return res.render(\"contributions\", {\n       51 |                 updateError: \"Invalid contribution percentages\",\n       52 |                 userId,\n       53 |                 environmentalScripts"
     },
     {
       "Tool": "semgrep",
@@ -5837,9 +5837,9 @@
       "InstalledVersion": null,
       "FixedVersion": null,
       "AI Remediation": {
-        "ai_text": "AI remediation skipped (quota saving)."
+        "ai_text": "```json\n{\n  \"rationale\": \"The `eval()` function is used to parse `req.body.afterTax`. Since `req.body` originates from user input, this can lead to arbitrary code execution if a malicious user provides specially crafted input for `afterTax`.\",\n  \"fix_suggestion\": \"Replace `eval()` with `parseFloat()` to safely convert the user-provided string to a floating-point number. Ensure this is done for all three `eval` calls (`preTax`, `afterTax`, `roth`).\",\n  \"patch\": {\n    \"before\": \"        const afterTax = eval(req.body.afterTax);\",\n    \"after\": \"        const preTax = parseFloat(req.body.preTax);\\n        const afterTax = parseFloat(req.body.afterTax);\\n        const roth = parseFloat(req.body.roth);\"\n  },\n  \"references\": [\n    \"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval\",\n    \"https://owasp.org/www-community/attacks/Javascript_Obfuscation\"\n  ]\n}\n```"
       },
-      "CodeContext": null
+      "CodeContext": "       13 |         const {\n       14 |             userId\n       15 |         } = req.session;\n       16 | \n       17 |         contributionsDAO.getByUserId(userId, (error, contrib) => {\n       18 |             if (error) return next(error);\n       19 | \n       20 |             contrib.userId = userId; //set for nav menu items\n       21 |             return res.render(\"contributions\", {\n       22 |                 ...contrib,\n       23 |                 environmentalScripts\n       24 |             });\n       25 |         });\n       26 |     };\n       27 | \n       28 |     this.handleContributionsUpdate = (req, res, next) => {\n       29 | \n       30 |         /*jslint evil: true */\n       31 |         // Insecure use of eval() to parse inputs\n       32 |         const preTax = eval(req.body.preTax);\n=>     33 |         const afterTax = eval(req.body.afterTax);\n       34 |         const roth = eval(req.body.roth);\n       35 | \n       36 |         /*\n       37 |         //Fix for A1 -1 SSJS Injection attacks - uses alternate method to eval\n       38 |         const preTax = parseInt(req.body.preTax);\n       39 |         const afterTax = parseInt(req.body.afterTax);\n       40 |         const roth = parseInt(req.body.roth);\n       41 |         */\n       42 |         const {\n       43 |             userId\n       44 |         } = req.session;\n       45 | \n       46 |         //validate contributions\n       47 |         const validations = [isNaN(preTax), isNaN(afterTax), isNaN(roth), preTax < 0, afterTax < 0, roth < 0];\n       48 |         const isInvalid = validations.some(validation => validation);\n       49 |         if (isInvalid) {\n       50 |             return res.render(\"contributions\", {\n       51 |                 updateError: \"Invalid contribution percentages\",\n       52 |                 userId,\n       53 |                 environmentalScripts"
     },
     {
       "Tool": "semgrep",
@@ -5853,9 +5853,9 @@
       "InstalledVersion": null,
       "FixedVersion": null,
       "AI Remediation": {
-        "ai_text": "AI remediation skipped (quota saving)."
+        "ai_text": "```json\n{\n  \"rationale\": \"The `eval()` function is used to parse user-controlled input from `req.body.roth`. This is highly dangerous as it allows arbitrary JavaScript code execution, which could lead to command injection or other severe security vulnerabilities. The commented-out fix already hints at the correct approach.\",\n  \"fix_suggestion\": \"Replace the `eval(req.body.roth)` call with `parseFloat(req.body.roth)` to safely parse the input as a floating-point number. This will prevent code execution and ensure that only numeric values are processed, aligning with the subsequent validation checks.\",\n  \"patch\": {\n    \"before\": \"        const roth = eval(req.body.roth);\",\n    \"after\": \"        const roth = parseFloat(req.body.roth);\"\n  },\n  \"references\": [\n    \"https://owasp.org/www-community/attacks/Server-side_JavaScript_injection\",\n    \"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval\"\n  ]\n}\n```"
       },
-      "CodeContext": null
+      "CodeContext": "       14 |             userId\n       15 |         } = req.session;\n       16 | \n       17 |         contributionsDAO.getByUserId(userId, (error, contrib) => {\n       18 |             if (error) return next(error);\n       19 | \n       20 |             contrib.userId = userId; //set for nav menu items\n       21 |             return res.render(\"contributions\", {\n       22 |                 ...contrib,\n       23 |                 environmentalScripts\n       24 |             });\n       25 |         });\n       26 |     };\n       27 | \n       28 |     this.handleContributionsUpdate = (req, res, next) => {\n       29 | \n       30 |         /*jslint evil: true */\n       31 |         // Insecure use of eval() to parse inputs\n       32 |         const preTax = eval(req.body.preTax);\n       33 |         const afterTax = eval(req.body.afterTax);\n=>     34 |         const roth = eval(req.body.roth);\n       35 | \n       36 |         /*\n       37 |         //Fix for A1 -1 SSJS Injection attacks - uses alternate method to eval\n       38 |         const preTax = parseInt(req.body.preTax);\n       39 |         const afterTax = parseInt(req.body.afterTax);\n       40 |         const roth = parseInt(req.body.roth);\n       41 |         */\n       42 |         const {\n       43 |             userId\n       44 |         } = req.session;\n       45 | \n       46 |         //validate contributions\n       47 |         const validations = [isNaN(preTax), isNaN(afterTax), isNaN(roth), preTax < 0, afterTax < 0, roth < 0];\n       48 |         const isInvalid = validations.some(validation => validation);\n       49 |         if (isInvalid) {\n       50 |             return res.render(\"contributions\", {\n       51 |                 updateError: \"Invalid contribution percentages\",\n       52 |                 userId,\n       53 |                 environmentalScripts\n       54 |             });"
     },
     {
       "Tool": "semgrep",
@@ -5869,9 +5869,9 @@
       "InstalledVersion": null,
       "FixedVersion": null,
       "AI Remediation": {
-        "ai_text": "AI remediation skipped (quota saving)."
+        "ai_text": "```json\n{\n  \"rationale\": \"The `eval()` function is used to parse user-controlled input from `req.body.roth`. This is highly dangerous as it allows arbitrary JavaScript code execution, which could lead to command injection or other severe security vulnerabilities. The commented-out fix already hints at the correct approach.\",\n  \"fix_suggestion\": \"Replace the `eval(req.body.roth)` call with `parseFloat(req.body.roth)` to safely parse the input as a floating-point number. This will prevent code execution and ensure that only numeric values are processed, aligning with the subsequent validation checks.\",\n  \"patch\": {\n    \"before\": \"        const roth = eval(req.body.roth);\",\n    \"after\": \"        const roth = parseFloat(req.body.roth);\"\n  },\n  \"references\": [\n    \"https://owasp.org/www-community/attacks/Server-side_JavaScript_injection\",\n    \"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval\"\n  ]\n}\n```"
       },
-      "CodeContext": null
+      "CodeContext": "       14 |             userId\n       15 |         } = req.session;\n       16 | \n       17 |         contributionsDAO.getByUserId(userId, (error, contrib) => {\n       18 |             if (error) return next(error);\n       19 | \n       20 |             contrib.userId = userId; //set for nav menu items\n       21 |             return res.render(\"contributions\", {\n       22 |                 ...contrib,\n       23 |                 environmentalScripts\n       24 |             });\n       25 |         });\n       26 |     };\n       27 | \n       28 |     this.handleContributionsUpdate = (req, res, next) => {\n       29 | \n       30 |         /*jslint evil: true */\n       31 |         // Insecure use of eval() to parse inputs\n       32 |         const preTax = eval(req.body.preTax);\n       33 |         const afterTax = eval(req.body.afterTax);\n=>     34 |         const roth = eval(req.body.roth);\n       35 | \n       36 |         /*\n       37 |         //Fix for A1 -1 SSJS Injection attacks - uses alternate method to eval\n       38 |         const preTax = parseInt(req.body.preTax);\n       39 |         const afterTax = parseInt(req.body.afterTax);\n       40 |         const roth = parseInt(req.body.roth);\n       41 |         */\n       42 |         const {\n       43 |             userId\n       44 |         } = req.session;\n       45 | \n       46 |         //validate contributions\n       47 |         const validations = [isNaN(preTax), isNaN(afterTax), isNaN(roth), preTax < 0, afterTax < 0, roth < 0];\n       48 |         const isInvalid = validations.some(validation => validation);\n       49 |         if (isInvalid) {\n       50 |             return res.render(\"contributions\", {\n       51 |                 updateError: \"Invalid contribution percentages\",\n       52 |                 userId,\n       53 |                 environmentalScripts\n       54 |             });"
     },
     {
       "Tool": "semgrep",
@@ -5885,9 +5885,9 @@
       "InstalledVersion": null,
       "FixedVersion": null,
       "AI Remediation": {
-        "ai_text": "AI remediation skipped (quota saving)."
+        "ai_text": "```json\n{\n  \"rationale\": \"The `res.redirect` function is directly using a user-supplied `url` query parameter without any validation. This allows an attacker to craft a malicious URL that redirects the user to an arbitrary, potentially harmful, external website (e.g., a phishing site).\",\n  \"fix_suggestion\": \"Implement an allow-list of trusted domains that the `url` parameter is allowed to redirect to. If the provided URL does not match any of the allowed domains, redirect to a safe default page or display a warning.\",\n  \"patch\": {\n    \"before\": \"return res.redirect(req.query.url);\",\n    \"after\": \"const allowedDomains = ['https://www.example.com/trusted-resource'];\\n        const redirectUrl = req.query.url;\\n        if (redirectUrl && allowedDomains.some(domain => redirectUrl.startsWith(domain))) {\\n            return res.redirect(redirectUrl);\\n        } else {\\n            return res.redirect('/learn/default'); // Redirect to a safe default page\\n        }\"\n  },\n  \"references\": [\n    \"https://owasp.org/www-community/attacks/Open_redirect\",\n    \"https://expressjs.com/en/api.html#res.redirect\"\n  ]\n}\n```"
       },
-      "CodeContext": null
+      "CodeContext": "       52 |     app.post(\"/contributions\", isLoggedIn, contributionsHandler.handleContributionsUpdate);\n       53 | \n       54 |     // Benefits Page\n       55 |     app.get(\"/benefits\", isLoggedIn, benefitsHandler.displayBenefits);\n       56 |     app.post(\"/benefits\", isLoggedIn, benefitsHandler.updateBenefits);\n       57 |     /* Fix for A7 - checks user role to implement  Function Level Access Control\n       58 |      app.get(\"/benefits\", isLoggedIn, isAdmin, benefitsHandler.displayBenefits);\n       59 |      app.post(\"/benefits\", isLoggedIn, isAdmin, benefitsHandler.updateBenefits);\n       60 |      */\n       61 | \n       62 |     // Allocations Page\n       63 |     app.get(\"/allocations/:userId\", isLoggedIn, allocationsHandler.displayAllocations);\n       64 | \n       65 |     // Memos Page\n       66 |     app.get(\"/memos\", isLoggedIn, memosHandler.displayMemos);\n       67 |     app.post(\"/memos\", isLoggedIn, memosHandler.addMemos);\n       68 | \n       69 |     // Handle redirect for learning resources link\n       70 |     app.get(\"/learn\", isLoggedIn, (req, res) => {\n       71 |         // Insecure way to handle redirects by taking redirect url from query string\n=>     72 |         return res.redirect(req.query.url);\n       73 |     });\n       74 | \n       75 |     // Research Page\n       76 |     app.get(\"/research\", isLoggedIn, researchHandler.displayResearch);\n       77 | \n       78 |     // Mount tutorial router\n       79 |     app.use(\"/tutorial\", tutorialRouter);\n       80 | \n       81 |     // Error handling middleware\n       82 |     app.use(ErrorHandler);\n       83 | };\n       84 | \n       85 | module.exports = index;"
     },
     {
       "Tool": "semgrep",
@@ -5901,9 +5901,9 @@
       "InstalledVersion": null,
       "FixedVersion": null,
       "AI Remediation": {
-        "ai_text": "AI remediation skipped (quota saving)."
+        "ai_text": "```json\n{\n  \"rationale\": \"The form submission does not include a CSRF token, making it vulnerable to Cross-Site Request Forgery (CSRF) attacks. An attacker could trick a logged-in user into submitting this form to the server with malicious intent.\",\n  \"fix_suggestion\": \"Django provides a CSRF token tag that should be included within any non-GET form. This tag generates a hidden input field containing the CSRF token.\",\n  \"patch\": {\n    \"before\": \"<form method=\\\"POST\\\" action=\\\"/benefits\\\">\",\n    \"after\": \"{% csrf_token %}\\n<form method=\\\"POST\\\" action=\\\"/benefits\\\">\"\n  },\n  \"references\": [\n    \"https://docs.djangoproject.com/en/stable/ref/csrf/\"\n  ]\n}\n```"
       },
-      "CodeContext": null
+      "CodeContext": "       34 | \n       35 |         <div class=\"table-responsive\">\n       36 |             <table class=\"table table-bordered table-hover\">\n       37 |                 <thead>\n       38 |                     <tr>\n       39 |                         <th class=\"col-md-1\">Employee ID</th>\n       40 |                         <th class=\"col-md-2\">First Name</th>\n       41 |                         <th class=\"col-md-2\">Last Name</th>\n       42 |                         <th class=\"col-md-7\">Benefits Start Date</th>\n       43 |                     </tr>\n       44 |                 </thead>\n       45 |                 <tbody>\n       46 | \n       47 |                     {% for user in users %}\n       48 | \n       49 |                     <tr>\n       50 |                         <td>{{user._id.toString()}}</td>\n       51 |                         <td>{{user.firstName}}</td>\n       52 |                         <td>{{user.lastName}}</td>\n       53 |                         <td>\n=>     54 |                             <form method=\"POST\" action=\"/benefits\">\n       55 |                                 <div class=\"input-group\">\n       56 |                                     <input type=\"hidden\" name=\"userId\" value=\"{{user._id.toString()}}\"></input>\n       57 |                                     <input type=\"date\" class=\"form-control\" name=\"benefitStartDate\" value=\"{{user.benefitStartDate}}\"></input>\n       58 |                                     <span class=\"input-group-btn\">\n       59 |                                         <button type=\"submit\" class=\"btn btn-default\">Save</button>\n       60 |                                     </span>\n       61 |                                 </div>\n       62 |                                 <!-- /input-group -->\n       63 |                             </form>\n       64 |                         </td>\n       65 |                     </tr>\n       66 |                     {% endfor %}\n       67 |                 </tbody>\n       68 |             </table>\n       69 | \n       70 |         </div>\n       71 |         <!-- /.row -->\n       72 |     </div>\n       73 | </div>\n       74 | "
     },
     {
       "Tool": "semgrep",
@@ -5917,9 +5917,9 @@
       "InstalledVersion": null,
       "FixedVersion": null,
       "AI Remediation": {
-        "ai_text": "AI remediation skipped (quota saving)."
+        "ai_text": "```json\n{\n  \"rationale\": \"The form at line 107 is missing the CSRF token. This makes the login form vulnerable to Cross-Site Request Forgery (CSRF) attacks, where an attacker could trick a logged-in user into submitting malicious requests.\",\n  \"fix_suggestion\": \"Add the `{% csrf_token %}` template tag within the `<form>` element to automatically generate and include the CSRF token. Remove the manual `input type=\\\"hidden\\\"` line.\",\n  \"patch\": {\n    \"before\": \"<form method=\\\"post\\\" role=\\\"form\\\" method=\\\"post\\\" id=\\\"loginform\\\">\",\n    \"after\": \"<form method=\\\"post\\\" role=\\\"form\\\" id=\\\"loginform\\\">\\n{% csrf_token %}\"\n  },\n  \"references\": [\n    \"https://docs.djangoproject.com/en/stable/ref/csrf/\"\n  ]\n}\n```"
       },
-      "CodeContext": null
+      "CodeContext": "       87 |                             <span style=\"font-size: x-large\">\n       88 |                                 <span class=\"fa fa-bullseye\"></span>Retire<b>Easy</b>\n       89 |                             </span>\n       90 |                             <br />\n       91 |                             <span style=\"font-size: medium\">Employee Retirement Savings Management</span>\n       92 |                             <br />\n       93 |                             <br />\n       94 |                         </div>\n       95 |                         <div class=\"panel-body\">\n       96 | \n       97 | \n       98 |                             {% if loginError %}\n       99 |                             <div class=\"alert alert-dismissable alert-danger\">\n      100 |                                 <button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>\n      101 |                                 {{loginError}}\n      102 |                             </div>\n      103 |                             {% endif %}\n      104 | \n      105 | \n      106 | \n=>    107 |                             <form method=\"post\" role=\"form\" method=\"post\" id=\"loginform\">\n      108 |                                 <div class=\"form-group\">\n      109 |                                     <label for=\"userName\">User Name</label>\n      110 |                                     <input type=\"text\" class=\"form-control\" id=\"userName\" name=\"userName\" value=\"{{userName}}\" placeholder=\"Enter User Name\">\n      111 |                                 </div>\n      112 | \n      113 |                                 <div class=\"form-group\">\n      114 |                                     <label for=\"password\">Password</label>\n      115 |                                     <input type=\"password\" class=\"form-control\" id=\"password\" name=\"password\" value=\"{{password}}\" placeholder=\"Enter Password\">\n      116 |                                 </div>\n      117 |                                 <input type=\"hidden\" name=\"_csrf\" value=\"{{csrftoken}}\" />\n      118 | \n      119 |                                 <div class=\"row\">\n      120 |                                     <div class=\"col-lg-4\"><a href=\"/signup\">New user? Sign Up</a>\n      121 |                                     </div>\n      122 |                                     <div class=\"col-lg-5\"></div>\n      123 |                                     <div class=\"col-lg-3\">\n      124 |                                         <button type=\"submit\" class=\"btn btn-danger\">Submit</button>\n      125 |                                     </div>\n      126 |                                 </div>\n      127 |                             </form>"
     },
     {
       "Tool": "semgrep",
