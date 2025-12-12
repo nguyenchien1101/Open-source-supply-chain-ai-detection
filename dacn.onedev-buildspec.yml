@@ -817,13 +817,7 @@ jobs:
   triggers:
   - type: DependencyFinishedTrigger
   jobDependencies:
-  - jobName: SAST
-    requireSuccessful: true
-    artifacts: '**'
-  - jobName: SCA
-    requireSuccessful: true
-    artifacts: '**'
-  - jobName: Container scan
+  - jobName: AI_REMEDIATION
     requireSuccessful: true
     artifacts: '**'
   retryCondition: never
@@ -1205,3 +1199,65 @@ jobs:
   maxRetries: 3
   retryDelay: 30
   timeout: 14400
+- name: AI_REMEDIATION
+  jobExecutor: local-docker
+  steps:
+  - type: CheckoutStep
+    name: Checkout Code
+    cloneCredential:
+      type: DefaultCredential
+    withLfs: false
+    withSubmodules: false
+    condition: SUCCESSFUL
+    optional: false
+  - type: CommandStep
+    name: AI_REMEDIATION
+    runInContainer: true
+    image: vonguyenchien1/ai-remediation:0.1
+    interpreter:
+      type: DefaultInterpreter
+      commands: |
+        set -e
+        export GEMINI_API_KEY="@secret:AI_REMEDIATION@"
+        export GEMINI_MODEL="${GEMINI_MODEL:-gemini-2.5-flash-lite}"
+
+        echo "=== AI REMEDIATION START ==="
+        echo "len(GEMINI_API_KEY)=${#GEMINI_API_KEY}"
+        [ -n "$GEMINI_API_KEY" ] || { echo "❌ GEMINI_API_KEY missing"; exit 1; }
+
+        ls -lh semgrep-report.json snyk-report.json trivy-report.json
+
+        python3 /app/ai_remediation_single.py \
+          --semgrep semgrep-report.json \
+          --snyk snyk-report.json \
+          --trivy trivy-report.json \
+          --repo-root . \
+          --before 20 --after 20 --max-workers 1
+
+        echo "=== AI REMEDIATION DONE ==="
+        ls -lh ai_report.* || true
+    useTTY: true
+    condition: SUCCESSFUL
+    optional: false
+  - type: PublishArtifactStep
+    name: Publish ai remediation Artifacts
+    artifacts: ai_report.json ai_report.html
+    condition: SUCCESSFUL
+    optional: false
+  triggers:
+  - type: DependencyFinishedTrigger
+  jobDependencies:
+  - jobName: SAST
+    requireSuccessful: true
+    artifacts: '**'
+  - jobName: SCA
+    requireSuccessful: true
+    artifacts: '**'
+  - jobName: Container scan
+    requireSuccessful: true
+    artifacts: '**'
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 14400
+

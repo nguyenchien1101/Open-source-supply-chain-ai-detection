@@ -1,0 +1,9 @@
+.git
+.gitignore
+__pycache__/
+*.pyc
+node_modules/
+report/
+target/
+*.html
+*.json
